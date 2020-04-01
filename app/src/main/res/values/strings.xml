@@ -1,0 +1,10 @@
+<resources>
+
+    <string name="app_name">Project Healthy</string>
+
+    <string name="menu_add_meal_button">Dodaj Posilek</string>
+    <string name="menu_statistics_button">Statystyki</string>
+    <string name="menu_options_button">Opcje</string>
+    <string name="menu_quit_button">Zamknij</string>
+
+</resources>
