@@ -2,7 +2,9 @@ package com.example.projekt;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -13,9 +15,28 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
     }
 
-    public void addMeal() {}
-    public void showStatistics() {}
-    public void openOptions() {}
-    public void quitApplication() {}
+    public void addMeal(View view)
+    {
+        Intent intent = new Intent(this, AddMealActivity.class);
+        startActivity(intent);
+    }
+
+    public void showStatistics(View view)
+    {
+        Intent intent = new Intent(this, ShowStatisticsActivity.class);
+        startActivity(intent);
+    }
+
+    public void openOptions(View view)
+    {
+        Intent intent = new Intent(this, OpenOptionsActivity.class);
+        startActivity(intent);
+    }
+
+    public void quitApplication(View view)
+    {
+        finish();
+        System.exit(0);
+    }
 
 }
