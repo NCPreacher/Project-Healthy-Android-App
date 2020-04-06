@@ -2,9 +2,18 @@
 
     <string name="app_name">Project Healthy</string>
 
-    <string name="menu_add_meal_button">Dodaj Posilek</string>
+    <string name="menu_add_meal_button">Dodaj Produkt</string>
     <string name="menu_statistics_button">Statystyki</string>
     <string name="menu_options_button">Opcje</string>
     <string name="menu_quit_button">Zamknij</string>
+
+    <string name="add_meal_name">Nazwa</string>
+    <string name="add_meal_info">Podaj wartosci odzywcze na 100g produktu/posilku</string>
+    <string name="add_meal_calories">Kalorie</string>
+    <string name="add_meal_proteins">Bialko</string>
+    <string name="add_meal_carbon">Weglowodany</string>
+    <string name="add_meal_fat">Tluszcze</string>
+
+    <string name="add_meal_add_button">Dodaj</string>
 
 </resources>
