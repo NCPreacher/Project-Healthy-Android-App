@@ -16,4 +16,11 @@
 
     <string name="add_meal_add_button">Dodaj</string>
 
+    <string name="options_name">Opcje</string>
+
+    <string name="set_target">Ustaw cel</string>
+    <string name="set_remind">Ustaw przypomnienie</string>
+    <string name="set_notifications">Ustaw powiadomienia</string>
+    <string name="edit_meals">Edytuj produkty</string>
+
 </resources>
