@@ -17,19 +17,19 @@ public class MainActivity extends AppCompatActivity
 
     public void addMeal(View view)
     {
-        Intent intent = new Intent(this, AddMealActivity.class);
+        Intent intent = new Intent(this, MealActivity.class);
         startActivity(intent);
     }
 
     public void showStatistics(View view)
     {
-        Intent intent = new Intent(this, ShowStatisticsActivity.class);
+        Intent intent = new Intent(this, StatisticsActivity.class);
         startActivity(intent);
     }
 
     public void openOptions(View view)
     {
-        Intent intent = new Intent(this, OpenOptionsActivity.class);
+        Intent intent = new Intent(this, OptionsActivity.class);
         startActivity(intent);
     }
 

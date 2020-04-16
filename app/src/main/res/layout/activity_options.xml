@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/menu_background"
-    tools:context=".OpenOptionsActivity">
+    tools:context=".OptionsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,7 +35,8 @@
             android:text="@string/set_target"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:onClick="editGoal"/>
 
         <Button
             android:id="@+id/edit_meals_button"
@@ -47,7 +48,8 @@
             android:text="@string/edit_meals"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:onClick="editMeals"/>
 
         <Button
             android:id="@+id/set_remind_button"
@@ -59,7 +61,8 @@
             android:text="@string/set_remind"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:onClick="editReminder"/>
 
         <Button
             android:id="@+id/set_notifications_button"
@@ -71,7 +74,8 @@
             android:text="@string/set_notifications"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:onClick="editNotifications"/>
 
     </LinearLayout>
 

@@ -9,9 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".OpenOptionsActivity"></activity>
-        <activity android:name=".ShowStatisticsActivity" />
-        <activity android:name=".AddMealActivity" />
+        <activity android:name=".EditMealsActivity"></activity>
+        <activity android:name=".ReminderActivity" />
+        <activity android:name=".NotificationsActivity" />
+        <activity android:name=".GoalActivity" />
+        <activity android:name=".OptionsActivity" />
+        <activity android:name=".StatisticsActivity" />
+        <activity android:name=".MealActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
