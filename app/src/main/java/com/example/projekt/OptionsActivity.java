@@ -27,12 +27,6 @@ public class OptionsActivity extends AppCompatActivity
         //startActivity(intent);
     }
 
-    public void editReminder(View view)
-    {
-        //Intent intent = new Intent(this, SetGoalActivity.class);
-        //startActivity(intent);
-    }
-
     public void editNotifications(View view)
     {
         //Intent intent = new Intent(this, SetGoalActivity.class);

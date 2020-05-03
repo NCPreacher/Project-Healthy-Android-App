@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".EditMealsActivity"></activity>
-        <activity android:name=".ReminderActivity" />
         <activity android:name=".NotificationsActivity" />
         <activity android:name=".GoalActivity" />
         <activity android:name=".OptionsActivity" />
