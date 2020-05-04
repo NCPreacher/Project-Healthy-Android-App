@@ -31,7 +31,7 @@ CREATE TABLE `cele` (
   `tluszcze` float NOT NULL,
   `nawodnienie` int DEFAULT NULL,
   KEY `uzytkownik` (`uzytkownik`),
-  CONSTRAINT `cele_ibfk_1` FOREIGN KEY (`uzytkownik`) REFERENCES `uzytkownicy` (`uzytkownik`)
+  CONSTRAINT `cele_ibfk_1` FOREIGN KEY (`uzytkownik`) REFERENCES `uzytkownicy` (`uzytkownik`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -59,7 +59,7 @@ CREATE TABLE `historia` (
   `ilosc` int NOT NULL,
   KEY `uzytkownik` (`uzytkownik`),
   KEY `nazwa` (`nazwa`),
-  CONSTRAINT `historia_ibfk_1` FOREIGN KEY (`uzytkownik`) REFERENCES `uzytkownicy` (`uzytkownik`),
+  CONSTRAINT `historia_ibfk_1` FOREIGN KEY (`uzytkownik`) REFERENCES `uzytkownicy` (`uzytkownik`) ON DELETE CASCADE,
   CONSTRAINT `historia_ibfk_2` FOREIGN KEY (`nazwa`) REFERENCES `produkty` (`nazwa`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -88,7 +88,7 @@ CREATE TABLE `powiadomienia` (
   `godzina` time NOT NULL,
   `tresc` char(255) NOT NULL,
   KEY `uzytkownik` (`uzytkownik`),
-  CONSTRAINT `powiadomienia_ibfk_1` FOREIGN KEY (`uzytkownik`) REFERENCES `uzytkownicy` (`uzytkownik`)
+  CONSTRAINT `powiadomienia_ibfk_1` FOREIGN KEY (`uzytkownik`) REFERENCES `uzytkownicy` (`uzytkownik`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
