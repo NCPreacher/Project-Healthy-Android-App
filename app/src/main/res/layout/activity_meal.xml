@@ -10,26 +10,19 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        style="@style/Linear_layout">
 
         <TextView
             android:id="@+id/meal_name_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-
+            android:layout_marginTop="50dp"
             android:text="@string/add_meal_name"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
+            style="@style/Text"/>
 
         <EditText
             android:id="@+id/meal_name"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="0dp"
 
             android:ems="10"
             android:inputType="textPersonName"
@@ -37,148 +30,115 @@
 
             android:text=""
             android:hint="@string/meal_name_hint"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            style="@style/Input_Text"/>
 
         <TextView
             android:id="@+id/add_meal_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-
+            android:layout_marginTop="10dp"
             android:text="@string/add_meal_info"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp"
-            android:textStyle="bold"/>
+            style="@style/Macros"/>
 
         <TextView
             android:id="@+id/meal_calories_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-
             android:text="@string/calories"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp"
-            android:textStyle="bold"/>
+            style="@style/Macros"/>
 
         <EditText
             android:id="@+id/meal_calories"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="-10dp"
 
             android:ems="10"
             android:inputType="number"
             android:importantForAutofill="no"
 
             android:hint="@string/default_value"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
+            style="@style/Input_Text"/>
 
         <TextView
             android:id="@+id/meal_proteins_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-
             android:text="@string/proteins"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp"
-            android:textStyle="bold"/>
+            style="@style/Macros"/>
 
         <EditText
             android:id="@+id/meal_proteins"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="-10dp"
 
             android:ems="10"
             android:inputType="number"
             android:importantForAutofill="no"
 
             android:hint="@string/default_value"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
+            style="@style/Input_Text"/>
 
         <TextView
             android:id="@+id/meal_carbons_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-
             android:text="@string/carbon"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp"
-            android:textStyle="bold"/>
+            style="@style/Macros"/>
 
         <EditText
             android:id="@+id/meal_carbons"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="-10dp"
 
             android:ems="10"
             android:inputType="number"
             android:importantForAutofill="no"
 
             android:hint="@string/default_value"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
+            style="@style/Input_Text"/>
 
         <TextView
-            android:id="@+id/meal_fats_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-
-            android:text="@string/fat"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp"
-            android:textStyle="bold"/>
+        android:id="@+id/meal_fats_text"
+        android:layout_marginTop="10dp"
+        android:text="@string/fat"
+            style="@style/Macros"/>
 
         <EditText
             android:id="@+id/meal_fats"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="-10dp"
 
             android:ems="10"
             android:inputType="number"
             android:importantForAutofill="no"
 
             android:hint="@string/default_value"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
+            style="@style/Input_Text"/>
+
+        <TextView
+            android:id="@+id/meal_fluids_text"
+            android:layout_marginTop="10dp"
+            android:text="@string/fluids"
+            style="@style/Macros"/>
+
+        <EditText
+            android:id="@+id/meal_fluids"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-10dp"
+
+            android:ems="10"
+            android:inputType="number"
+            android:importantForAutofill="no"
+
+            android:hint="@string/default_value"
+            style="@style/Input_Text"/>
 
         <Button
             android:id="@+id/meal_add_button"
-            android:layout_width="250dp"
-            android:layout_height="60dp"
-            android:background="@drawable/menu_button_states"
             android:layout_marginTop="30dp"
-
+            android:onClick="addMeal"
             android:text="@string/add_meal_add_button"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:onClick="addMeal"/>
+            style="@style/Button" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,6 +4,97 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/menu_background"
     tools:context=".NotificationsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        style="@style/Linear_layout">
+
+        <TextView
+            android:id="@+id/notifications_name_text"
+            android:layout_marginTop="50dp"
+            android:text="@string/notifications_name"
+            style="@style/Title"/>
+
+        <TextView
+            android:id="@+id/notifications_date_text"
+            android:layout_marginTop="10dp"
+            android:text="@string/date"
+            style="@style/Text"/>
+
+        <EditText
+            android:id="@+id/date"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="date"
+
+            android:hint="@string/default_value"
+            style="@style/Input_Text"/>
+
+        <TextView
+            android:id="@+id/notifications_time_text"
+            android:layout_marginTop="10dp"
+            android:text="@string/time"
+            style="@style/Text"/>
+
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-10dp"
+
+            android:ems="10"
+            android:inputType="time"
+
+            android:hint="@string/default_value"
+            style="@style/Input_Text"/>
+
+        <TextView
+            android:id="@+id/notifications_text_text"
+            android:layout_marginTop="10dp"
+            android:text="@string/text"
+            style="@style/Text"/>
+
+        <EditText
+            android:id="@+id/editText4"
+            style="@style/Input_Text"
+            android:layout_width="148dp"
+            android:layout_height="128dp"
+
+            android:layout_marginTop="-10dp"
+            android:ems="10"
+
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/notifications_repeat_text"
+            android:layout_marginTop="10dp"
+            android:text="@string/repeat"
+            style="@style/Text"/>
+
+        <CheckBox
+            android:id="@+id/notifications_repeat_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"/>
+
+        <Button
+            android:id="@+id/add_notification_button"
+            android:layout_marginTop="30dp"
+            android:onClick="addNotification"
+            android:text="@string/notifications_add_notification_button"
+            style="@style/Button"/>
+
+        <Button
+            android:id="@+id/edit_notifications_button"
+            android:layout_marginTop="30dp"
+            android:onClick="editNotifications"
+            android:text="@string/notifications_edit_button"
+            style="@style/Button"/>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

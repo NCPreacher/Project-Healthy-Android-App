@@ -7,9 +7,21 @@
     <string name="proteins">Bialko</string>
     <string name="carbon">Weglowodany</string>
     <string name="fat">Tluszcze</string>
+    <string name="fluids">Plyny</string>
+
+    <string name="time">Godzina</string>
+    <string name="date">Dzien</string>
+    <string name="text">Tresc</string>
+    <string name="repeat">Powtarzaj</string>
+
+    <string name="login_username_text">Nazwa uzytkownika</string>
+    <string name="login_password_text">Haslo</string>
+    <string name="login_button_text">Zaloguj</string>
+
+    <string name="register_button_text">Zarejestruj</string>
+    <string name="registration_text">Rejestracja</string>
 
     <string name="menu_add_meal_button">Dodaj Produkt</string>
-
     <string name="add_meal_name">Nazwa</string>
     <string name="meal_name_hint">Nazwa Produktu</string>
     <string name="add_meal_info">Podaj wartosci odzywcze na 100g produktu/posilku</string>
@@ -18,16 +30,30 @@
     <string name="menu_statistics_button">Statystyki</string>
 
     <string name="menu_options_button">Opcje</string>
-
     <string name="options_name">Opcje</string>
-    <string name="set_target">Ustaw cel</string>
+    <string name="add_goal_button">Dodaj Cel</string>
 
-    <string name="target_name">Cel</string>
-    <string name="set_target_button">Ustaw cel</string>
+    <string-array name="days_of_week">
+        <item>Poniedzialek</item>
+        <item>Wtorek</item>
+        <item>Sroda</item>
+        <item>Czwartek</item>
+        <item>Piatek</item>
+        <item>Sobota</item>
+        <item>Niedziela</item>
+    </string-array>
 
-    <string name="set_remind">Ustaw przypomnienie</string>
-    <string name="set_notifications">Ustaw powiadomienia</string>
-    <string name="edit_meals">Edytuj produkty</string>
+    <string name="goal_name">Cel</string>
+    <string name="set_goals_button">Ustaw cel</string>
+
+    <string name="edit_meals">Produkty</string>
+
+    <string name="set_notifications">Powiadomienia</string>
+    <string name="notifications_name">Powiadomienia</string>
+    <string name="notifications_add_notification_button">Dodaj</string>
+    <string name="notifications_edit_button">Edytuj</string>
+
+    <string name="history">Historia</string>
 
     <string name="menu_quit_button">Zamknij</string>
 

@@ -10,145 +10,136 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        style="@style/Linear_layout">
 
         <TextView
-            android:id="@+id/target_name_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+            android:id="@+id/goal_name_text"
+            android:layout_marginTop="50dp"
 
-            android:text="@string/target_name"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="50sp"
-            android:textStyle="bold"/>
+            android:text="@string/goal_name"
+            style="@style/Title"/>
 
         <TextView
-            android:id="@+id/target_calories_text"
+            android:id="@+id/goal_day_text"
+            android:layout_marginTop="20dp"
+
+            android:text="@string/date"
+            style="@style/Macros"/>
+
+        <Spinner
+            android:id="@+id/goal_day_select"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="0dp"
+            android:layout_marginStart="25dp" />
+
+        <TextView
+            android:id="@+id/goal_calories_text"
             android:layout_marginTop="20dp"
 
             android:text="@string/calories"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
+            style="@style/Macros"/>
 
         <EditText
-            android:id="@+id/target_calories"
+            android:id="@+id/goal_calories"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="-10dp"
 
             android:ems="10"
             android:inputType="number"
             android:importantForAutofill="no"
 
             android:hint="@string/default_value"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
+            style="@style/Input_Text"/>
 
         <TextView
-            android:id="@+id/meal_proteins_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/goal_proteins_text"
             android:layout_marginTop="10dp"
 
             android:text="@string/proteins"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
+            style="@style/Macros"/>
 
         <EditText
-            android:id="@+id/target_proteins"
+            android:id="@+id/goal_proteins"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="-10dp"
 
             android:ems="10"
             android:inputType="number"
             android:importantForAutofill="no"
 
             android:hint="@string/default_value"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
+            style="@style/Input_Text"/>
 
         <TextView
-            android:id="@+id/target_carbons_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/goal_carbons_text"
             android:layout_marginTop="10dp"
 
             android:text="@string/carbon"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
+            style="@style/Macros"/>
 
         <EditText
-            android:id="@+id/target_carbons"
+            android:id="@+id/goal_carbons"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="-10dp"
 
             android:ems="10"
             android:inputType="number"
             android:importantForAutofill="no"
 
             android:hint="@string/default_value"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
+            style="@style/Input_Text"/>
 
         <TextView
-            android:id="@+id/target_fats_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/goal_fats_text"
             android:layout_marginTop="10dp"
 
             android:text="@string/fat"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
+            style="@style/Macros"/>
 
         <EditText
-            android:id="@+id/target_fats"
+            android:id="@+id/goal_fats"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="-10dp"
 
             android:ems="10"
             android:inputType="number"
             android:importantForAutofill="no"
 
             android:hint="@string/default_value"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
+            style="@style/Input_Text"/>
+
+        <TextView
+            android:id="@+id/goal_fluids_text"
+            android:layout_marginTop="10dp"
+
+            android:text="@string/fluids"
+            style="@style/Macros"/>
+
+        <EditText
+            android:id="@+id/goal_fluids"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-10dp"
+
+            android:ems="10"
+            android:inputType="number"
+            android:importantForAutofill="no"
+
+            android:hint="@string/default_value"
+            style="@style/Input_Text"/>
 
         <Button
-            android:id="@+id/set_target_button"
-            android:layout_width="250dp"
-            android:layout_height="60dp"
-            android:background="@drawable/menu_button_states"
+            android:id="@+id/add_goal_button"
             android:layout_marginTop="30dp"
-
-            android:text="@string/set_target_button"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
+            android:onClick="addGoal"
+            android:text="@string/add_goal_button"
+            style="@style/Button"/>
 
     </LinearLayout>
 

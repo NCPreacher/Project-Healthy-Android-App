@@ -2,12 +2,11 @@ package com.example.projekt;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-public class MainActivity extends AppCompatActivity
+public class RegisterActivity extends AppCompatActivity
 {
     EditText mUserName;
     EditText mPassword;
@@ -16,29 +15,19 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_register);
 
         mUserName = findViewById(R.id.username);
         mPassword = findViewById(R.id.password);
     }
 
-    public void login(View view)
+    public void register(View view)
     {
         String userName = mUserName.getText().toString();
         String password = mPassword.getText().toString();
 
-        DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
+        DataBaseHelper dataBaseHelper = new DataBaseHelper(RegisterActivity.this);
 
-        if(dataBaseHelper.login(userName, password) == true)
-        {
-            Intent intent = new Intent(this, MenuActivity.class);
-            startActivity(intent);
-        }
-    }
-
-    public void register(View view)
-    {
-        Intent intent = new Intent(this, RegisterActivity.class);
-        startActivity(intent);
+        dataBaseHelper.register(userName, password);
     }
 }

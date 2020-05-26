@@ -15,21 +15,27 @@ public class OptionsActivity extends AppCompatActivity
         setContentView(R.layout.activity_options);
     }
 
-    public void editGoal(View view)
+    public void editGoals(View view)
     {
-        Intent intent = new Intent(this, GoalActivity.class);
+        Intent intent = new Intent(this, EditGoalsActivity.class);
         startActivity(intent);
     }
 
     public void editMeals(View view)
     {
-        Intent intent = new Intent(this, GoalActivity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, EditMealsActivity.class);
+        startActivity(intent);
     }
 
     public void editNotifications(View view)
     {
-        //Intent intent = new Intent(this, SetGoalActivity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, NotificationsActivity.class);
+        startActivity(intent);
+    }
+
+    public void showHistory(View view)
+    {
+        Intent intent = new Intent(this, HistoryActivity.class);
+        startActivity(intent);
     }
 }
