@@ -40,13 +40,6 @@
             style="@style/Button" />
 
         <Button
-            android:id="@+id/menu_quit_buton"
-            android:layout_marginTop="30dp"
-            android:onClick="quitApplication"
-            android:text="@string/menu_quit_button"
-            style="@style/Button" />
-
-        <Button
             android:id="@+id/test"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

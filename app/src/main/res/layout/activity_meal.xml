@@ -38,104 +38,187 @@
             android:text="@string/add_meal_info"
             style="@style/Macros"/>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="30dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:layout_marginRight="20sp">
+
+                    <TextView
+                        android:id="@+id/meal_proteins_text"
+                        style="@style/Text"
+                        android:text="@string/proteins" />
+
+                    <EditText
+                        android:id="@+id/meal_proteins"
+                        style="@style/Input_Text"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginTop="-10dp"
+                        android:ems="10"
+                        android:hint="@string/default_value"
+
+                        android:importantForAutofill="no"
+                        android:inputType="number" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/meal_carbons_text"
+                        style="@style/Text"
+                        android:text="@string/carbon" />
+
+                    <EditText
+                        android:id="@+id/meal_carbons"
+                        style="@style/Input_Text"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginTop="-10dp"
+                        android:ems="10"
+                        android:hint="@string/default_value"
+
+                        android:importantForAutofill="no"
+                        android:inputType="number" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="20sp">
+
+                    <TextView
+                        android:id="@+id/meal_fats_text"
+                        style="@style/Text"
+                        android:text="@string/fat" />
+
+                    <EditText
+                        android:id="@+id/meal_fats"
+                        style="@style/Input_Text"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginTop="-10dp"
+                        android:ems="10"
+                        android:hint="@string/default_value"
+
+                        android:importantForAutofill="no"
+                        android:inputType="number" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:layout_marginRight="10dp">
+
+                    <TextView
+                        android:id="@+id/meal_calories_text"
+                        style="@style/Text"
+                        android:text="@string/calories" />
+
+                    <EditText
+                        android:id="@+id/meal_calories"
+                        style="@style/Input_Text"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginTop="-10dp"
+                        android:ems="10"
+                        android:hint="@string/default_value"
+
+                        android:importantForAutofill="no"
+                        android:inputType="number" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/meal_fluids_text"
+                        style="@style/Text"
+                        android:text="@string/fluids" />
+
+                    <EditText
+                        android:id="@+id/meal_fluids"
+                        style="@style/Input_Text"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginTop="-10dp"
+                        android:ems="10"
+                        android:hint="@string/default_value"
+
+                        android:importantForAutofill="no"
+                        android:inputType="number" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
         <TextView
-            android:id="@+id/meal_calories_text"
+            android:id="@+id/meal_amount_text"
+            style="@style/Text"
             android:layout_marginTop="20dp"
-            android:text="@string/calories"
-            style="@style/Macros"/>
+            android:text="@string/amount" />
 
         <EditText
-            android:id="@+id/meal_calories"
+            android:id="@+id/meal_amount"
+            style="@style/Input_Text"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
+
             android:layout_marginTop="-10dp"
-
             android:ems="10"
-            android:inputType="number"
-            android:importantForAutofill="no"
-
             android:hint="@string/default_value"
-            style="@style/Input_Text"/>
+
+            android:importantForAutofill="no"
+            android:inputType="number" />
 
         <TextView
-            android:id="@+id/meal_proteins_text"
-            android:layout_marginTop="10dp"
-            android:text="@string/proteins"
-            style="@style/Macros"/>
-
-        <EditText
-            android:id="@+id/meal_proteins"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-10dp"
-
-            android:ems="10"
-            android:inputType="number"
-            android:importantForAutofill="no"
-
-            android:hint="@string/default_value"
-            style="@style/Input_Text"/>
-
-        <TextView
-            android:id="@+id/meal_carbons_text"
-            android:layout_marginTop="10dp"
-            android:text="@string/carbon"
-            style="@style/Macros"/>
-
-        <EditText
-            android:id="@+id/meal_carbons"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-10dp"
-
-            android:ems="10"
-            android:inputType="number"
-            android:importantForAutofill="no"
-
-            android:hint="@string/default_value"
-            style="@style/Input_Text"/>
-
-        <TextView
-        android:id="@+id/meal_fats_text"
-        android:layout_marginTop="10dp"
-        android:text="@string/fat"
-            style="@style/Macros"/>
-
-        <EditText
-            android:id="@+id/meal_fats"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-10dp"
-
-            android:ems="10"
-            android:inputType="number"
-            android:importantForAutofill="no"
-
-            android:hint="@string/default_value"
-            style="@style/Input_Text"/>
-
-        <TextView
-            android:id="@+id/meal_fluids_text"
-            android:layout_marginTop="10dp"
-            android:text="@string/fluids"
-            style="@style/Macros"/>
-
-        <EditText
-            android:id="@+id/meal_fluids"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-10dp"
-
-            android:ems="10"
-            android:inputType="number"
-            android:importantForAutofill="no"
-
-            android:hint="@string/default_value"
-            style="@style/Input_Text"/>
+            android:id="@+id/meal_warning_text"
+            android:layout_marginTop="25sp"
+            android:text="@string/error_text"
+            style="@style/Warning_Text"/>
 
         <Button
             android:id="@+id/meal_add_button"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="35dp"
             android:onClick="addMeal"
             android:text="@string/add_meal_add_button"
             style="@style/Button" />

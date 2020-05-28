@@ -8,11 +8,15 @@
     <string name="carbon">Weglowodany</string>
     <string name="fat">Tluszcze</string>
     <string name="fluids">Plyny</string>
+    <string name="amount">Ilosc</string>
 
     <string name="time">Godzina</string>
     <string name="date">Dzien</string>
     <string name="text">Tresc</string>
     <string name="repeat">Powtarzaj</string>
+
+    <string name="error_text">Podano nieprawidlowe dane!</string>
+    <string name="register_error_text">Taki uzytkownik juz istnieje!</string>
 
     <string name="login_username_text">Nazwa uzytkownika</string>
     <string name="login_password_text">Haslo</string>

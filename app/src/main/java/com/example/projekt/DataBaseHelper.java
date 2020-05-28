@@ -8,6 +8,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class DataBaseHelper extends SQLiteOpenHelper
 {
     public DataBaseHelper(@Nullable Context context)
@@ -23,7 +27,7 @@ public class DataBaseHelper extends SQLiteOpenHelper
                 "\t\"uzytkownik\"\tchar(30) NOT NULL,\n" +
                 "\t\"data\"\tdate NOT NULL,\n" +
                 "\t\"nazwa\"\tchar(30) NOT NULL,\n" +
-                "\t\"ilosc\"\tint NOT NULL,\n" +
+                "\t\"ilosc\"\tfloat NOT NULL,\n" +
                 "\tCONSTRAINT \"historia_ibfk_1\" FOREIGN KEY(\"uzytkownik\") REFERENCES \"uzytkownicy\"(\"uzytkownik\") ON DELETE CASCADE,\n" +
                 "\tCONSTRAINT \"historia_ibfk_2\" FOREIGN KEY(\"nazwa\") REFERENCES \"produkty\"(\"nazwa\")\n" +
                 ");";
@@ -48,6 +52,7 @@ public class DataBaseHelper extends SQLiteOpenHelper
                 "\t\"p_id\"\tINTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
                 "\t\"uzytkownik\"\tchar(30) NOT NULL,\n" +
                 "\t\"wlaczone\"\ttinyint(1) NOT NULL,\n" +
+                "\t\"powtarzaj\"\ttinyint(1) NOT NULL,\n" +
                 "\t\"dzien\"\tint NOT NULL,\n" +
                 "\t\"godzina\"\ttime NOT NULL,\n" +
                 "\t\"tresc\"\tchar(255) NOT NULL,\n" +
@@ -113,7 +118,7 @@ public class DataBaseHelper extends SQLiteOpenHelper
 
     /// Insert ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public boolean addMeal(String name, float calories, float proteins, float carbohydrates, float fats, int lotions)
+    public boolean addMeal(String name, float calories, float proteins, float carbons, float fats, int fluids)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -121,52 +126,69 @@ public class DataBaseHelper extends SQLiteOpenHelper
         cv.put("nazwa", name);
         cv.put("kalorie", calories);
         cv.put("bialko", proteins);
-        cv.put("weglowodany", carbohydrates);
+        cv.put("weglowodany", carbons);
         cv.put("tluszcze", fats);
-        cv.put("plyny", lotions);
+        cv.put("plyny", fluids);
 
         return db.insert("produkty", null, cv) > 0; // Dodaj posiłek
     }
 
-    public boolean addNotification(String userName, int day, String hour, String text) // ??
+    public boolean addNotification(String userName, boolean repeat, String day, String hour, String text)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
         cv.put("uzytkownik", userName);
         cv.put("wlaczone", 1); // Dodane powiadomienie domyślnie aktywne;
-        cv.put("dzien", day);
-        cv.put("godzina", hour); //???
-        cv.put("tresc", text); //???
+        cv.put("powtarzaj", repeat);
 
-        return db.insert("powiadomienia", null, cv) > 0; // Dodaj cel
+        if(day.equals("Poniedzialek")) cv.put("dzien", 0);
+        else if(day.equals("Wtorek")) cv.put("dzien", 1);
+        else if(day.equals("Sroda")) cv.put("dzien", 2);
+        else if(day.equals("Czwartek")) cv.put("dzien", 3);
+        else if(day.equals("Piatek")) cv.put("dzien", 4);
+        else if(day.equals("Sobota")) cv.put("dzien", 5);
+        else if(day.equals("Niedziela")) cv.put("dzien", 6);
+
+        cv.put("godzina", hour);
+        cv.put("tresc", text);
+
+        return db.insert("powiadomienia", null, cv) > 0; // Dodaj powiadomienie
     }
 
-    public boolean addHistory(String userName, String date, String name, float amount) // ??
+    public boolean addHistory(String userName, String name, float amount) // ??
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
         cv.put("uzytkownik", userName);
-        cv.put("data", date); //???
+        cv.put("data", getDateTime());
         cv.put("nazwa", name);
         cv.put("ilosc", amount);
 
-        return db.insert("historia", null, cv) > 0; // Dodaj cel
+        return db.insert("historia", null, cv) > 0; // Dodaj historie
     }
 
-    public boolean addGoal(String userName, int day, float calories, float proteins, float carbohydrates, float fats, int lotions)
+    public boolean addGoal(String userName, String day, float calories, float proteins, float carbons, float fats, int fluids)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
         cv.put("uzytkownik", userName);
-        cv.put("dzien", day);
+
+        if(day.equals("Poniedzialek")) cv.put("dzien", 0);
+        else if(day.equals("Wtorek")) cv.put("dzien", 1);
+        else if(day.equals("Sroda")) cv.put("dzien", 2);
+        else if(day.equals("Czwartek")) cv.put("dzien", 3);
+        else if(day.equals("Piatek")) cv.put("dzien", 4);
+        else if(day.equals("Sobota")) cv.put("dzien", 5);
+        else if(day.equals("Niedziela")) cv.put("dzien", 6);
+
         cv.put("kalorie", calories);
         cv.put("bialko", proteins);
-        cv.put("weglowodany", carbohydrates);
+        cv.put("weglowodany", carbons);
         cv.put("tluszcze", fats);
-        cv.put("nawodnienie", lotions);
+        cv.put("nawodnienie", fluids);
 
         return db.insert("cele", null, cv) > 0; // Dodaj cel
     }
@@ -215,7 +237,7 @@ public class DataBaseHelper extends SQLiteOpenHelper
         return db.update("uzytkownicy", cv, "uzytkownik = ?", new String[] {userName}) > 0;
     }
 
-    public boolean updateMeal(String name, float calories, float proteins, float carbohydrates, float fats, int lotions)
+    public boolean updateMeal(String name, float calories, float proteins, float carbons, float fats, int fluids)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -223,38 +245,64 @@ public class DataBaseHelper extends SQLiteOpenHelper
         cv.put("nazwa", name);
         cv.put("kalorie", calories);
         cv.put("bialko", proteins);
-        cv.put("weglowodany", carbohydrates);
+        cv.put("weglowodany", carbons);
         cv.put("tluszcze", fats);
-        cv.put("plyny", lotions);
+        cv.put("plyny", fluids);
 
         return db.update("produkty", cv, "nazwa = ?", new String[] {name}) > 0;
     }
 
-    public boolean updateNotification(String id, int status, int day, String hour, String text) // ??
+    public boolean updateNotification(String id, int status, boolean repeat, String day, String hour, String text)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
         cv.put("wlaczone", status);
-        cv.put("dzien", day);
-        cv.put("godzina", hour); //???
-        cv.put("tresc", text); //???
+        cv.put("powtarzaj", repeat);
+
+        if(day.equals("Poniedzialek")) cv.put("dzien", 0);
+        else if(day.equals("Wtorek")) cv.put("dzien", 1);
+        else if(day.equals("Sroda")) cv.put("dzien", 2);
+        else if(day.equals("Czwartek")) cv.put("dzien", 3);
+        else if(day.equals("Piatek")) cv.put("dzien", 4);
+        else if(day.equals("Sobota")) cv.put("dzien", 5);
+        else if(day.equals("Niedziela")) cv.put("dzien", 6);
+
+        cv.put("godzina", hour);
+        cv.put("tresc", text);
 
         return db.update("powiadomienia", cv, "p_id = ?", new String[] {id}) > 0;
     }
 
-    public boolean updateGoal(String id, int day, float calories, float proteins, float carbohydrates, float fats, int lotions)
+    public boolean updateGoal(String id, String day, float calories, float proteins, float carbons, float fats, int fluids)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put("dzien", day);
+        if(day.equals("Poniedzialek")) cv.put("dzien", 0);
+        else if(day.equals("Wtorek")) cv.put("dzien", 1);
+        else if(day.equals("Sroda")) cv.put("dzien", 2);
+        else if(day.equals("Czwartek")) cv.put("dzien", 3);
+        else if(day.equals("Piatek")) cv.put("dzien", 4);
+        else if(day.equals("Sobota")) cv.put("dzien", 5);
+        else if(day.equals("Niedziela")) cv.put("dzien", 6);
+
         cv.put("kalorie", calories);
         cv.put("bialko", proteins);
-        cv.put("weglowodany", carbohydrates);
+        cv.put("weglowodany", carbons);
         cv.put("tluszcze", fats);
-        cv.put("nawodnienie", lotions);
+        cv.put("nawodnienie", fluids);
 
         return db.update("cele", cv, "c_id = ?", new String[] {id}) > 0;
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    private String getDateTime()
+    {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        Date date = new Date();
+
+        return dateFormat.format(date);
     }
 }

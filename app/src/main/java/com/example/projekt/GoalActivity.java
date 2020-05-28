@@ -2,6 +2,7 @@ package com.example.projekt;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -9,6 +10,7 @@ import android.widget.Spinner;
 
 public class GoalActivity extends AppCompatActivity
 {
+    String user;
     Spinner spinner;
 
     @Override
@@ -17,12 +19,19 @@ public class GoalActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goal);
 
-        spinner = (Spinner) findViewById(R.id.goal_day_select);
+        Intent intent = getIntent();
+        user = intent.getStringExtra("user");
 
-        init();
+        spinner = (Spinner) findViewById(R.id.goal_day_select);
+        initSpinner();
     }
 
-    private void init()
+    public void addGoal(View view)
+    {
+
+    }
+
+    private void initSpinner()
     {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource
                 (
@@ -34,10 +43,5 @@ public class GoalActivity extends AppCompatActivity
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinner.setAdapter(adapter);
-    }
-
-    public void addGoal(View view)
-    {
-
     }
 }

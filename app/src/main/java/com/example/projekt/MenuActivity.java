@@ -14,11 +14,16 @@ import android.view.View;
 
 public class MenuActivity extends AppCompatActivity
 {
+    String user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+        Intent intent = getIntent();
+        user = intent.getStringExtra("user");
 
         createNotificationChannel();
     }
@@ -58,24 +63,21 @@ public class MenuActivity extends AppCompatActivity
     public void addMeal(View view)
     {
         Intent intent = new Intent(this, MealActivity.class);
+        intent.putExtra("user", user);
         startActivity(intent);
     }
 
     public void showStatistics(View view)
     {
         Intent intent = new Intent(this, StatisticsActivity.class);
+        intent.putExtra("user", user);
         startActivity(intent);
     }
 
     public void openOptions(View view)
     {
         Intent intent = new Intent(this, OptionsActivity.class);
+        intent.putExtra("user", user);
         startActivity(intent);
-    }
-
-    public void quitApplication(View view)
-    {
-        finish();
-        System.exit(0);
     }
 }

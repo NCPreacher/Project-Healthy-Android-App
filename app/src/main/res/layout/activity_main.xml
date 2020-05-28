@@ -19,8 +19,14 @@
             style="@style/Title" />
 
         <TextView
+            android:id="@+id/login_warning_text"
+            android:layout_marginTop="60dp"
+            android:text="@string/error_text"
+            style="@style/Warning_Text"/>
+
+        <TextView
             android:id="@+id/login_username"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="20dp"
             android:text="@string/login_username_text"
             style="@style/Text"/>
 

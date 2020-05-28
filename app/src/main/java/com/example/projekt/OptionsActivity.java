@@ -8,34 +8,43 @@ import android.view.View;
 
 public class OptionsActivity extends AppCompatActivity
 {
+    String user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_options);
+
+        Intent intent = getIntent();
+        user = intent.getStringExtra("user");
     }
 
     public void editGoals(View view)
     {
         Intent intent = new Intent(this, EditGoalsActivity.class);
+        intent.putExtra("user", user);
         startActivity(intent);
     }
 
     public void editMeals(View view)
     {
         Intent intent = new Intent(this, EditMealsActivity.class);
+        intent.putExtra("user", user);
         startActivity(intent);
     }
 
     public void editNotifications(View view)
     {
         Intent intent = new Intent(this, NotificationsActivity.class);
+        intent.putExtra("user", user);
         startActivity(intent);
     }
 
     public void showHistory(View view)
     {
         Intent intent = new Intent(this, HistoryActivity.class);
+        intent.putExtra("user", user);
         startActivity(intent);
     }
 }

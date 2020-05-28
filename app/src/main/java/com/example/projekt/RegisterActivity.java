@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class RegisterActivity extends AppCompatActivity
 {
-    EditText mUserName;
-    EditText mPassword;
+    TextView register_warning;
+    EditText register_username;
+    EditText register_password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -17,17 +19,22 @@ public class RegisterActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        mUserName = findViewById(R.id.username);
-        mPassword = findViewById(R.id.password);
+        register_warning = findViewById(R.id.register_warrning_text);
+        register_username = findViewById(R.id.username);
+        register_password = findViewById(R.id.password);
     }
 
     public void register(View view)
     {
-        String userName = mUserName.getText().toString();
-        String password = mPassword.getText().toString();
+        String userName = register_username.getText().toString();
+        String password = register_password.getText().toString();
 
         DataBaseHelper dataBaseHelper = new DataBaseHelper(RegisterActivity.this);
 
-        dataBaseHelper.register(userName, password);
+        if(dataBaseHelper.register(userName, password) == true)
+        {
+            finish();
+        }
+        else { register_warning.setVisibility(View.VISIBLE); }
     }
 }
