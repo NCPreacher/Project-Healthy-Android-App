@@ -14,28 +14,9 @@
     <string name="date">Dzien</string>
     <string name="text">Tresc</string>
     <string name="repeat">Powtarzaj</string>
+    <string name="active">Aktywne</string>
 
-    <string name="error_text">Podano nieprawidlowe dane!</string>
-    <string name="register_error_text">Taki uzytkownik juz istnieje!</string>
-
-    <string name="login_username_text">Nazwa uzytkownika</string>
-    <string name="login_password_text">Haslo</string>
-    <string name="login_button_text">Zaloguj</string>
-
-    <string name="register_button_text">Zarejestruj</string>
-    <string name="registration_text">Rejestracja</string>
-
-    <string name="menu_add_meal_button">Dodaj Produkt</string>
-    <string name="add_meal_name">Nazwa</string>
-    <string name="meal_name_hint">Nazwa Produktu</string>
-    <string name="add_meal_info">Podaj wartosci odzywcze na 100g produktu/posilku</string>
-    <string name="add_meal_add_button">Dodaj</string>
-
-    <string name="menu_statistics_button">Statystyki</string>
-
-    <string name="menu_options_button">Opcje</string>
-    <string name="options_name">Opcje</string>
-    <string name="add_goal_button">Dodaj Cel</string>
+    <string name="search">Szukaj</string>
 
     <string-array name="days_of_week">
         <item>Poniedzialek</item>
@@ -47,18 +28,51 @@
         <item>Niedziela</item>
     </string-array>
 
+    <string name="error_text">Podano nieprawidlowe dane!</string>
+
+    <string name="add_button">Dodaj</string>
+    <string name="remove_button">Usun</string>
+    <string name="edit_button">Edytuj</string>
+
+    <string name="login_username_text">Nazwa uzytkownika</string>
+    <string name="login_password_text">Haslo</string>
+    <string name="login_button">Zaloguj</string>
+
+    <string name="register_error_text">Taki uzytkownik juz istnieje!</string>
+    <string name="register_sub_text">Rejestracja</string>
+    <string name="register_button">Zarejestruj</string>
+
+    <string name="meal_name_text">Nazwa</string>
+    <string name="meal_name_hint_text">Nazwa Produktu</string>
+    <string name="meal_info_text">Podaj wartosci odzywcze na 100g produktu/posilku</string>
+    <string name="meal_add_button_text">Dodaj</string>
+    <string name="meal_edit_button">Edytuj</string>
+
+    <string name="menu_add_meal_button">Dodaj Produkt</string>
+    <string name="menu_statistics_button">Statystyki</string>
+    <string name="menu_options_button">Opcje</string>
+
+    <string name="options_name">Opcje</string>
+    <string name="options_goals_button">Cele</string>
+    <string name="options_notifications_button">Powiadomienia</string>
+    <string name="options_history_button">Historia</string>
+    <string name="options_password_button">Zmien haslo</string>
+
     <string name="goal_name">Cel</string>
-    <string name="set_goals_button">Ustaw cel</string>
+    <string name="goal_add_button">Dodaj Cel</string>
+    <string name="goal_edit_button">Edytuj cele</string>
 
-    <string name="edit_meals">Produkty</string>
-
-    <string name="set_notifications">Powiadomienia</string>
     <string name="notifications_name">Powiadomienia</string>
-    <string name="notifications_add_notification_button">Dodaj</string>
+    <string name="notifications_add__button">Dodaj</string>
     <string name="notifications_edit_button">Edytuj</string>
 
-    <string name="history">Historia</string>
+    <string name="password_name_text">Zmien Haslo</string>
+    <string name="password_current_password_text">Aktualne haslo</string>
+    <string name="password_new_password_text">Nowe haslo</string>
+    <string name="password_change_button">Zmien</string>
 
-    <string name="menu_quit_button">Zamknij</string>
+    <string name="history_name">Historia</string>
+
+    <string name="change_meal_button_text">Zmien</string>
 
 </resources>

@@ -6,4 +6,30 @@
     android:layout_height="match_parent"
     tools:context=".EditNotificationsActivity">
 
+    <LinearLayout
+        android:id="@+id/edit_notifications_main_layout"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        style="@style/ScrollView_Panel">
+
+        <TextView
+            android:id="@+id/edit_notifications_name"
+            style="@style/Title"
+            android:text="@string/notifications_name"
+            android:paddingTop="5dp">
+        </TextView>
+
+    </LinearLayout>
+
+    <ScrollView
+        app:layout_constraintTop_toBottomOf="@+id/edit_notifications_main_layout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        style="@style/ScrollView">
+
+        <LinearLayout
+            android:id="@+id/edit_notifications_layout"
+            style="@style/Linear_layout" />
+
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,36 +8,36 @@
     tools:context=".MenuActivity">
 
     <LinearLayout
+        style="@style/Linear_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        style="@style/Linear_layout">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/app_name_text"
+            style="@style/Title"
             android:layout_marginTop="80dp"
-            android:text="@string/app_name"
-            style="@style/Title" />
+            android:text="@string/app_name" />
 
         <Button
             android:id="@+id/menu_add_meal_button"
+            style="@style/Button"
             android:layout_marginTop="80dp"
             android:onClick="addMeal"
-            android:text="@string/menu_add_meal_button"
-            style="@style/Button" />
+            android:text="@string/menu_add_meal_button" />
 
         <Button
             android:id="@+id/menu_statistics_button"
+            style="@style/Button"
             android:layout_marginTop="30dp"
             android:onClick="showStatistics"
-            android:text="@string/menu_statistics_button"
-            style="@style/Button" />
+            android:text="@string/menu_statistics_button" />
 
         <Button
             android:id="@+id/menu_options_button"
+            style="@style/Button"
             android:layout_marginTop="30dp"
             android:onClick="openOptions"
-            android:text="@string/menu_options_button"
-            style="@style/Button" />
+            android:text="@string/menu_options_button" />
 
         <Button
             android:id="@+id/test"

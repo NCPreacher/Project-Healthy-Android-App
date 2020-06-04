@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HistoryActivity"></activity>
+        <activity android:name=".ChangeNotificationActivity"></activity>
+        <activity android:name=".ChangeMealActivity" />
+        <activity android:name=".EditPasswordActivity" />
+        <activity android:name=".HistoryActivity" />
         <activity android:name=".EditNotificationsActivity" />
         <activity android:name=".EditGoalsActivity" />
         <activity android:name=".RegisterActivity" />

@@ -24,9 +24,9 @@ public class DataBaseHelper extends SQLiteOpenHelper
     {
         String createHistory = "CREATE TABLE IF NOT EXISTS \"historia\" (\n" +
                 "\t\"h_id\"\tINTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
-                "\t\"uzytkownik\"\tchar(30) NOT NULL,\n" +
+                "\t\"uzytkownik\"\tchar(255) NOT NULL,\n" +
                 "\t\"data\"\tdate NOT NULL,\n" +
-                "\t\"nazwa\"\tchar(30) NOT NULL,\n" +
+                "\t\"nazwa\"\tchar(255) NOT NULL,\n" +
                 "\t\"ilosc\"\tfloat NOT NULL,\n" +
                 "\tCONSTRAINT \"historia_ibfk_1\" FOREIGN KEY(\"uzytkownik\") REFERENCES \"uzytkownicy\"(\"uzytkownik\") ON DELETE CASCADE,\n" +
                 "\tCONSTRAINT \"historia_ibfk_2\" FOREIGN KEY(\"nazwa\") REFERENCES \"produkty\"(\"nazwa\")\n" +
@@ -36,7 +36,7 @@ public class DataBaseHelper extends SQLiteOpenHelper
 
         String createGoals = "CREATE TABLE IF NOT EXISTS \"cele\" (\n" +
                 "\t\"c_id\"\tINTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
-                "\t\"uzytkownik\"\tchar(30) NOT NULL,\n" +
+                "\t\"uzytkownik\"\tchar(255) NOT NULL,\n" +
                 "\t\"dzien\"\tint NOT NULL,\n" +
                 "\t\"kalorie\"\tfloat NOT NULL,\n" +
                 "\t\"bialko\"\tfloat NOT NULL,\n" +
@@ -50,7 +50,7 @@ public class DataBaseHelper extends SQLiteOpenHelper
 
         String createNotifications = "CREATE TABLE IF NOT EXISTS \"powiadomienia\" (\n" +
                 "\t\"p_id\"\tINTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
-                "\t\"uzytkownik\"\tchar(30) NOT NULL,\n" +
+                "\t\"uzytkownik\"\tchar(255) NOT NULL,\n" +
                 "\t\"wlaczone\"\ttinyint(1) NOT NULL,\n" +
                 "\t\"powtarzaj\"\ttinyint(1) NOT NULL,\n" +
                 "\t\"dzien\"\tint NOT NULL,\n" +
@@ -62,7 +62,7 @@ public class DataBaseHelper extends SQLiteOpenHelper
         db.execSQL(createNotifications);
 
         String createMeals = "CREATE TABLE IF NOT EXISTS \"produkty\" (\n" +
-                "\t\"nazwa\"\tchar(30) NOT NULL,\n" +
+                "\t\"nazwa\"\tchar(255) NOT NULL,\n" +
                 "\t\"kalorie\"\tfloat NOT NULL,\n" +
                 "\t\"bialko\"\tfloat NOT NULL,\n" +
                 "\t\"weglowodany\"\tfloat NOT NULL,\n" +
@@ -74,7 +74,7 @@ public class DataBaseHelper extends SQLiteOpenHelper
         db.execSQL(createMeals);
 
         String createUsers = "CREATE TABLE IF NOT EXISTS \"uzytkownicy\" (\n" +
-                "\t\"uzytkownik\"\tchar(30) NOT NULL,\n" +
+                "\t\"uzytkownik\"\tchar(255) NOT NULL,\n" +
                 "\t\"haslo\"\tchar(32) NOT NULL,\n" +
                 "\tPRIMARY KEY(\"uzytkownik\")\n" +
                 ");";
@@ -141,22 +141,14 @@ public class DataBaseHelper extends SQLiteOpenHelper
         cv.put("uzytkownik", userName);
         cv.put("wlaczone", 1); // Dodane powiadomienie domyślnie aktywne;
         cv.put("powtarzaj", repeat);
-
-        if(day.equals("Poniedzialek")) cv.put("dzien", 0);
-        else if(day.equals("Wtorek")) cv.put("dzien", 1);
-        else if(day.equals("Sroda")) cv.put("dzien", 2);
-        else if(day.equals("Czwartek")) cv.put("dzien", 3);
-        else if(day.equals("Piatek")) cv.put("dzien", 4);
-        else if(day.equals("Sobota")) cv.put("dzien", 5);
-        else if(day.equals("Niedziela")) cv.put("dzien", 6);
-
+        cv.put("dzien", getDay(day));
         cv.put("godzina", hour);
         cv.put("tresc", text);
 
         return db.insert("powiadomienia", null, cv) > 0; // Dodaj powiadomienie
     }
 
-    public boolean addHistory(String userName, String name, float amount) // ??
+    public boolean addHistory(String userName, String name, float amount)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -173,17 +165,24 @@ public class DataBaseHelper extends SQLiteOpenHelper
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
+        int dayNumber = getDay(day);
+        Cursor cursor;
+
+        try
+        {
+            String day_num = String.valueOf(dayNumber);
+            cursor = db.rawQuery("SELECT c_id FROM cele WHERE dzien = ? AND uzytkownik = ?", new String[] {day_num, userName});
+        }
+        catch (Exception e) { return false; }
+
+        if(cursor.moveToFirst()) // Jezeli znalazl cel na dany dzien
+        {
+            String c_id = String.valueOf(cursor.getString(cursor.getColumnIndex("c_id")));
+            return updateGoal(c_id, calories, proteins, carbons, fats, fluids);
+        }
 
         cv.put("uzytkownik", userName);
-
-        if(day.equals("Poniedzialek")) cv.put("dzien", 0);
-        else if(day.equals("Wtorek")) cv.put("dzien", 1);
-        else if(day.equals("Sroda")) cv.put("dzien", 2);
-        else if(day.equals("Czwartek")) cv.put("dzien", 3);
-        else if(day.equals("Piatek")) cv.put("dzien", 4);
-        else if(day.equals("Sobota")) cv.put("dzien", 5);
-        else if(day.equals("Niedziela")) cv.put("dzien", 6);
-
+        cv.put("dzien", dayNumber);
         cv.put("kalorie", calories);
         cv.put("bialko", proteins);
         cv.put("weglowodany", carbons);
@@ -227,13 +226,20 @@ public class DataBaseHelper extends SQLiteOpenHelper
 
     /// Update ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public boolean updateUserPassword(String userName, String password)
+    public boolean updateUserPassword(String userName, String oldPassword, String newPassword)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
+        Cursor cursor;
 
-        cv.put("haslo", password);
+        try { cursor = db.rawQuery("SELECT haslo FROM uzytkownicy WHERE uzytkownik = ?", new String[] {userName}); }
+        catch (Exception e) { return false; }
 
+        cursor.moveToFirst();
+
+        if(!cursor.getString(cursor.getColumnIndex("haslo")).equals(oldPassword)) { return false; } // Jezeli haslo sie nie zgadza
+
+        cv.put("haslo", newPassword);
         return db.update("uzytkownicy", cv, "uzytkownik = ?", new String[] {userName}) > 0;
     }
 
@@ -252,40 +258,23 @@ public class DataBaseHelper extends SQLiteOpenHelper
         return db.update("produkty", cv, "nazwa = ?", new String[] {name}) > 0;
     }
 
-    public boolean updateNotification(String id, int status, boolean repeat, String day, String hour, String text)
+    public boolean updateNotification(String id, boolean repeat, String day, String hour, String text)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put("wlaczone", status);
         cv.put("powtarzaj", repeat);
-
-        if(day.equals("Poniedzialek")) cv.put("dzien", 0);
-        else if(day.equals("Wtorek")) cv.put("dzien", 1);
-        else if(day.equals("Sroda")) cv.put("dzien", 2);
-        else if(day.equals("Czwartek")) cv.put("dzien", 3);
-        else if(day.equals("Piatek")) cv.put("dzien", 4);
-        else if(day.equals("Sobota")) cv.put("dzien", 5);
-        else if(day.equals("Niedziela")) cv.put("dzien", 6);
-
+        cv.put("dzien", getDay(day));
         cv.put("godzina", hour);
         cv.put("tresc", text);
 
         return db.update("powiadomienia", cv, "p_id = ?", new String[] {id}) > 0;
     }
 
-    public boolean updateGoal(String id, String day, float calories, float proteins, float carbons, float fats, int fluids)
+    public boolean updateGoal(String id, float calories, float proteins, float carbons, float fats, int fluids)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-
-        if(day.equals("Poniedzialek")) cv.put("dzien", 0);
-        else if(day.equals("Wtorek")) cv.put("dzien", 1);
-        else if(day.equals("Sroda")) cv.put("dzien", 2);
-        else if(day.equals("Czwartek")) cv.put("dzien", 3);
-        else if(day.equals("Piatek")) cv.put("dzien", 4);
-        else if(day.equals("Sobota")) cv.put("dzien", 5);
-        else if(day.equals("Niedziela")) cv.put("dzien", 6);
 
         cv.put("kalorie", calories);
         cv.put("bialko", proteins);
@@ -293,7 +282,108 @@ public class DataBaseHelper extends SQLiteOpenHelper
         cv.put("tluszcze", fats);
         cv.put("nawodnienie", fluids);
 
-        return db.update("cele", cv, "c_id = ?", new String[] {id}) > 0;
+        return db.update("cele", cv, "c_id = ?", new String[] {String.valueOf(id)}) > 0;
+    }
+
+    /// Get //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public Cursor getHistory(String userName)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = null;
+
+        try { cursor = db.rawQuery("SELECT * FROM historia WHERE uzytkownik = ?", new String[] {userName}); }
+        catch (Exception e) { return cursor; }
+
+        return cursor;
+    }
+
+    public Cursor getMeal()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = null;
+
+        try { cursor = db.rawQuery("SELECT * FROM produkty" , null); }
+        catch (Exception e) { return cursor; }
+
+        return cursor;
+    }
+
+    public Cursor getMeal(String name)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = null;
+
+        try { cursor = db.rawQuery("SELECT * FROM produkty WHERE nazwa = ?", new String[] {name}); }
+        catch (Exception e) { return cursor; }
+
+        return cursor;
+    }
+
+    public Cursor getGoal(String userName)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = null;
+
+        try { cursor = db.rawQuery("SELECT * FROM cele WHERE uzytkownik = ?", new String[] {userName}); }
+        catch (Exception e) { return cursor; }
+
+        return cursor;
+    }
+
+    public Cursor getGoal(int id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = null;
+
+        try { cursor = db.rawQuery("SELECT * FROM cele WHERE c_id = ?", new String[] {String.valueOf(id)}); }
+        catch (Exception e) { return cursor; }
+
+        return cursor;
+    }
+
+    public Cursor getNotification(String userName)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = null;
+
+        try { cursor = db.rawQuery("SELECT * FROM powiadomienia WHERE uzytkownik = ?", new String[] {userName}); }
+        catch (Exception e) { return cursor; }
+
+        return cursor;
+    }
+
+    public Cursor getNotification(int id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = null;
+
+        try { cursor = db.rawQuery("SELECT * FROM powiadomienia WHERE p_id = ?", new String[] {String.valueOf(id)}); }
+        catch (Exception e) { return cursor; }
+
+        return cursor;
+    }
+
+    // Set ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public void setNotificationActive(String id, boolean status)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put("wlaczone", status);
+
+        db.update("powiadomienia", cv, "p_id = ?", new String[] {id});
+    }
+
+    public void setNotificationRepeat(String id, boolean repeat)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put("powtarzaj", repeat);
+
+        db.update("powiadomienia", cv, "p_id = ?", new String[] {id});
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -304,5 +394,31 @@ public class DataBaseHelper extends SQLiteOpenHelper
         Date date = new Date();
 
         return dateFormat.format(date);
+    }
+
+    public int getDay(String day)
+    {
+        if(day.equals("Poniedzialek")) return 0;
+        else if(day.equals("Wtorek")) return 1;
+        else if(day.equals("Sroda")) return 2;
+        else if(day.equals("Czwartek")) return 3;
+        else if(day.equals("Piatek")) return 4;
+        else if(day.equals("Sobota")) return 5;
+        else if(day.equals("Niedziela")) return 6;
+
+        return -1;
+    }
+
+    public String getDayName(int day)
+    {
+        if(day == 0) return "Poniedzialek";
+        else if(day == 1) return "Wtorek";
+        else if(day == 2) return "Sroda";
+        else if(day == 3) return "Czwartek";
+        else if(day == 4) return "Piatek";
+        else if(day == 5) return "Sobota";
+        else if(day == 6) return "Niedziela";
+
+        return "Error";
     }
 }

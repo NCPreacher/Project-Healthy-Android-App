@@ -8,69 +8,63 @@
     tools:context=".MainActivity">
 
     <LinearLayout
+        style="@style/Linear_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        style="@style/Linear_layout">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/app_name_text"
+            style="@style/Title"
             android:layout_marginTop="80dp"
-            android:text="@string/app_name"
-            style="@style/Title" />
+            android:text="@string/app_name" />
 
         <TextView
             android:id="@+id/login_warning_text"
+            style="@style/Warning_Text"
             android:layout_marginTop="60dp"
-            android:text="@string/error_text"
-            style="@style/Warning_Text"/>
+            android:text="@string/error_text" />
 
         <TextView
-            android:id="@+id/login_username"
+            android:id="@+id/login_username_text"
+            style="@style/Text"
             android:layout_marginTop="20dp"
             android:text="@string/login_username_text"
-            style="@style/Text"/>
+            android:labelFor="@id/login_username" />
 
         <EditText
-            android:id="@+id/username"
+            android:id="@+id/login_username"
+            style="@style/Input_Text"
             android:layout_width="200dp"
             android:layout_height="40dp"
-
-            android:ems="10"
-            android:inputType="textPersonName"
-
-            style="@style/Input_Text"
             android:autofillHints="" />
 
         <TextView
-            android:id="@+id/login_password"
+            android:id="@+id/login_password_text"
+            style="@style/Text"
             android:layout_marginTop="5dp"
             android:text="@string/login_password_text"
-            style="@style/Text"/>
+            android:labelFor="@id/login_password" />
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/login_password"
+            style="@style/Input_Password"
             android:layout_width="200dp"
             android:layout_height="40dp"
-
-            android:ems="10"
-            android:inputType="textPassword"
-
-            style="@style/Input_Text"
             android:autofillHints="" />
 
         <Button
             android:id="@+id/login_button"
-            android:layout_marginTop="55dp"
+            style="@style/Button"
+            android:layout_marginTop="75dp"
             android:onClick="login"
-            android:text="@string/login_button_text"
-            style="@style/Button" />
+            android:text="@string/login_button" />
 
         <Button
             android:id="@+id/register_button"
+            style="@style/Button"
             android:layout_marginTop="30dp"
             android:onClick="register"
-            android:text="@string/register_button_text"
-            style="@style/Button" />
+            android:text="@string/register_button" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

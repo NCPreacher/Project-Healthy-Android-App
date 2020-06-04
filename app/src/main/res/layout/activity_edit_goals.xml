@@ -6,4 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".EditGoalsActivity">
 
+    <LinearLayout
+        android:id="@+id/edit_goal_main_layout"
+        style="@style/ScrollView_Panel"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/edit_goal_search"
+            style="@style/Title"
+            android:paddingTop="8dp"
+            android:text="@string/goal_name" />
+
+    </LinearLayout>
+
+    <ScrollView
+        style="@style/ScrollView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_goal_main_layout">
+
+        <LinearLayout
+            android:id="@+id/edit_goal_layout"
+            style="@style/Linear_layout" />
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

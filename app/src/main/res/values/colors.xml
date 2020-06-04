@@ -5,4 +5,14 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
 
+    <color name="button_default_0">#2AF598</color>
+    <color name="button_default_1">#009EFD</color>
+    <color name="button_pressed_0">#12E184</color>
+    <color name="button_pressed_1">#008ae9</color>
+
+    <color name="scrollView_panel_default_0">#0066FF</color>
+    <color name="scrollView_panel_default_1">#009EFD</color>
+    <color name="scrollView_panel_pressed_0">#0033CC</color>
+    <color name="scrollView_panel_pressed_1">#007CDB</color>
+
 </resources>

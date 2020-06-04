@@ -8,15 +8,15 @@
     tools:context=".NotificationsActivity">
 
     <LinearLayout
+        style="@style/Linear_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        style="@style/Linear_layout">
+        android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/notifications_name_text"
+            android:id="@+id/notification_name_text"
+            style="@style/Title"
             android:layout_marginTop="50dp"
-            android:text="@string/notifications_name"
-            style="@style/Title"/>
+            android:text="@string/notifications_name" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -26,107 +26,92 @@
             android:gravity="center_horizontal">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginRight="60dp"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+                style="@style/Linear_layout"
+                android:layout_marginEnd="60dp">
 
                 <TextView
-                    android:id="@+id/notifications_date_text"
-                    style="@style/Text"
-                    android:text="@string/date" />
+                    android:id="@+id/notification_day_text"
+                    android:text="@string/date"
+                    style="@style/Text"/>
 
                 <Spinner
-                    android:id="@+id/notifications_day_select"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_marginTop="0dp"
+                    android:id="@+id/notification_day_select"
+                    style="@style/Spinner"
                     android:layout_marginStart="25dp" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginRight="40dp"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+                style="@style/Linear_layout"
+                android:layout_marginEnd="40dp">
 
                 <TextView
-                    android:id="@+id/notifications_time_text"
+                    android:id="@+id/notification_time_text"
                     style="@style/Text"
                     android:text="@string/time" />
 
                 <EditText
-                    android:id="@+id/notifications_time"
-                    style="@style/Input_Text"
+                    android:id="@+id/notification_time"
+                    style="@style/Input_Hour"
                     android:layout_width="80dp"
-                    android:layout_height="wrap_content"
                     android:layout_marginTop="-10dp"
 
-                    android:ems="10"
                     android:hint="@string/default_value"
-                    android:inputType="time" />
+                    android:autofillHints="" />
 
             </LinearLayout>
         </LinearLayout>
 
         <TextView
-            android:id="@+id/notifications_text_text"
+            android:id="@+id/notification_text_text"
             style="@style/Text"
-            android:layout_marginTop="10dp"
-            android:text="@string/text" />
+            android:layout_marginTop="20dp"
+            android:text="@string/text"
+            android:labelFor="@id/notification_text" />
 
         <ScrollView
             android:layout_width="wrap_content"
             android:layout_height="75dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                style="@style/Linear_layout" >
 
                 <EditText
-                    android:id="@+id/notifications_text"
+                    android:id="@+id/notification_text"
                     style="@style/Input_Text"
                     android:layout_width="200dp"
-                    android:layout_height="wrap_content"
                     android:layout_marginTop="-10dp"
 
-                    android:ems="10"
                     android:inputType="textMultiLine"
                     android:autofillHints="" />
             </LinearLayout>
         </ScrollView>
 
         <CheckBox
-            android:id="@+id/notifications_repeat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/repeat"
-            style="@style/Text"/>
+            android:id="@+id/notification_repeat"
+            style="@style/Text"
+            android:layout_marginTop="15dp"
+            android:text="@string/repeat" />
 
         <TextView
+            android:id="@+id/notification_warning"
+            style="@style/Warning_Text"
             android:layout_marginTop="15dp"
-            android:id="@+id/notifications_warning"
-            android:text="@string/error_text"
-            style="@style/Warning_Text"/>
+            android:text="@string/error_text" />
 
         <Button
             android:id="@+id/add_notification_button"
+            style="@style/Button"
             android:layout_marginTop="20dp"
             android:onClick="addNotification"
-            android:text="@string/notifications_add_notification_button"
-            style="@style/Button"/>
+            android:text="@string/notifications_add__button" />
 
         <Button
-            android:id="@+id/edit_notifications_button"
+            android:id="@+id/edit_notification_button"
+            style="@style/Button"
             android:layout_marginTop="30dp"
-            android:onClick="editNotifications"
-            android:text="@string/notifications_edit_button"
-            style="@style/Button"/>
+            android:onClick="editNotification"
+            android:text="@string/notifications_edit_button" />
 
     </LinearLayout>
 

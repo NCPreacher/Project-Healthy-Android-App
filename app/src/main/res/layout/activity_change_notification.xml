@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/menu_background"
+    tools:context=".ChangeNotificationActivity">
+
+    <LinearLayout
+        style="@style/Linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/change_notification_name_text"
+        style="@style/Title"
+        android:layout_marginTop="50dp"
+        android:text="@string/notifications_name" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+
+        <LinearLayout
+            style="@style/Linear_layout"
+            android:layout_marginEnd="60dp">
+
+            <TextView
+                android:id="@+id/change_notification_day_text"
+                android:text="@string/date"
+                style="@style/Text"/>
+
+            <Spinner
+                android:id="@+id/change_notification_day_select"
+                style="@style/Spinner"
+                android:layout_marginStart="25dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/Linear_layout"
+            android:layout_marginEnd="40dp">
+
+            <TextView
+                android:id="@+id/change_notification_time_text"
+                style="@style/Text"
+                android:text="@string/time" />
+
+            <EditText
+                android:id="@+id/change_notification_time"
+                style="@style/Input_Hour"
+                android:layout_width="80dp"
+                android:layout_marginTop="-10dp"
+
+                android:hint="@string/default_value"
+                android:autofillHints="" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/change_notification_text_text"
+        style="@style/Text"
+        android:layout_marginTop="20dp"
+        android:text="@string/text"
+        android:labelFor="@id/change_notification_text" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="75dp">
+
+        <LinearLayout
+            style="@style/Linear_layout" >
+
+            <EditText
+                android:id="@+id/change_notification_text"
+                style="@style/Input_Text"
+                android:layout_width="200dp"
+                android:layout_marginTop="-10dp"
+
+                android:inputType="textMultiLine"
+                android:autofillHints="" />
+        </LinearLayout>
+    </ScrollView>
+
+    <CheckBox
+        android:id="@+id/change_notification_repeat"
+        style="@style/Text"
+        android:layout_marginTop="15dp"
+        android:text="@string/repeat" />
+
+    <TextView
+        android:id="@+id/change_notification_warning"
+        style="@style/Warning_Text"
+        android:layout_marginTop="15dp"
+        android:text="@string/error_text" />
+
+    <Button
+        android:id="@+id/change_notification_button"
+        style="@style/Button"
+        android:layout_marginTop="20dp"
+        android:onClick="change"
+        android:text="@string/change_meal_button_text" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

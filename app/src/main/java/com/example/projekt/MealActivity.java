@@ -5,12 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class MealActivity extends AppCompatActivity
 {
     String user;
+    Boolean is_called_from_edit = false;
 
     String name;
     float amount;
@@ -29,6 +32,8 @@ public class MealActivity extends AppCompatActivity
     EditText meal_fats;
     EditText meal_fluids;
 
+    DataBaseHelper db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -38,13 +43,25 @@ public class MealActivity extends AppCompatActivity
         Intent intent = getIntent();
         user = intent.getStringExtra("user");
 
+        db = new DataBaseHelper(MealActivity.this);
+
         getUI();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 0)
+        {
+            if(resultCode == 0) { this.finish(); }
+            if(resultCode == 1) { resetActivity(); }
+        }
     }
 
     public void addMeal(View view)
     {
-        DataBaseHelper db = new DataBaseHelper(MealActivity.this);
-
         getValues();
 
         if(!meal_name.getText().toString().equals(""))
@@ -54,10 +71,26 @@ public class MealActivity extends AppCompatActivity
 
             if(!meal_amount.getText().toString().equals(""))
             {
+                amount = Float.parseFloat(meal_amount.getText().toString());
                 db.addHistory(user, name, amount);
             }
+
+            if(is_called_from_edit == true)
+            {
+                Intent returnedIntent = new Intent();
+                setResult(RESULT_OK, returnedIntent);
+            }
+
+            finish();
         }
         else { meal_warning.setVisibility(View.VISIBLE); }
+    }
+
+    public void editMeal(View view)
+    {
+        Intent intent = new Intent(this, EditMealsActivity.class);
+        intent.putExtra("user", user);
+        startActivityForResult(intent, 0);
     }
 
     public void getUI()
@@ -84,5 +117,18 @@ public class MealActivity extends AppCompatActivity
         else { fats = 0; }
         if(!meal_fluids.getText().toString().equals("")) { fluids = Integer.parseInt(meal_fluids.getText().toString()); }
         else { fluids = 0; }
+    }
+
+    public void resetActivity()
+    {
+        if(meal_warning.getVisibility() == View.VISIBLE) { meal_warning.setVisibility(View.INVISIBLE); }
+
+        meal_amount.setText("");
+        meal_name.setText("");
+        meal_calories.setText("");
+        meal_proteins.setText("");
+        meal_carbons.setText("");
+        meal_fats.setText("");
+        meal_fluids.setText("");
     }
 }

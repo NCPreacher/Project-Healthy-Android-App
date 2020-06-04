@@ -22,14 +22,7 @@ public class OptionsActivity extends AppCompatActivity
 
     public void editGoals(View view)
     {
-        Intent intent = new Intent(this, EditGoalsActivity.class);
-        intent.putExtra("user", user);
-        startActivity(intent);
-    }
-
-    public void editMeals(View view)
-    {
-        Intent intent = new Intent(this, EditMealsActivity.class);
+        Intent intent = new Intent(this, GoalActivity.class);
         intent.putExtra("user", user);
         startActivity(intent);
     }
@@ -44,6 +37,13 @@ public class OptionsActivity extends AppCompatActivity
     public void showHistory(View view)
     {
         Intent intent = new Intent(this, HistoryActivity.class);
+        intent.putExtra("user", user);
+        startActivity(intent);
+    }
+
+    public void editPassword(View view)
+    {
+        Intent intent = new Intent(this, EditPasswordActivity.class);
         intent.putExtra("user", user);
         startActivity(intent);
     }

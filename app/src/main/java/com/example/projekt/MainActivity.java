@@ -10,9 +10,14 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
 {
+    String userName;
+    String password;
+
     TextView login_warning;
     EditText login_username;
     EditText login_password;
+
+    DataBaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -20,19 +25,29 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        db = new DataBaseHelper(MainActivity.this);
+
+        getUI();
+    }
+
+    public void getUI()
+    {
         login_warning = findViewById(R.id.login_warning_text);
-        login_username = findViewById(R.id.username);
-        login_password = findViewById(R.id.password);
+        login_username = findViewById(R.id.login_username);
+        login_password = findViewById(R.id.login_password);
+    }
+
+    public void getValues()
+    {
+        userName = login_username.getText().toString();
+        password = login_password.getText().toString();
     }
 
     public void login(View view)
     {
-        String userName = login_username.getText().toString();
-        String password = login_password.getText().toString();
+        getValues();
 
-        DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
-
-        if(dataBaseHelper.login(userName, password) == true)
+        if(db.login(userName, password) == true)
         {
             resetActivity();
 

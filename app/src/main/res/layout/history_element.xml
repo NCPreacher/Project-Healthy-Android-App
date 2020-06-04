@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp"
+    android:orientation="horizontal"
+    android:background="@drawable/scrollview_element_default">
+
+    <Button
+        style="@style/ScrollView_Element_Button"
+        android:onClick="remove"
+        android:text="@string/remove_button" />
+
+    <LinearLayout
+    android:layout_width="255dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="10dp"
+    android:orientation="vertical">
+
+        <TextView
+            style="@style/Macros"
+            android:layout_marginTop="5dp" />
+
+        <TextView
+            style="@style/Macros"
+            android:layout_marginTop="5dp" />
+
+        <TextView
+            style="@style/Macros"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>
