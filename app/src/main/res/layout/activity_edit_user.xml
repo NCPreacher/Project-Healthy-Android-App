@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/menu_background"
-    tools:context=".layout.OptionsActivity">
+    tools:context=".layout.EditUserActivity">
 
     <LinearLayout
         style="@style/Linear_layout"
@@ -13,38 +13,24 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/options_name_text"
+            android:id="@+id/edit_user_text"
             style="@style/Title"
             android:layout_marginTop="80dp"
-            android:text="@string/options_name" />
-
-        <Button
-            android:id="@+id/set_goals_button"
-            style="@style/Button"
-            android:layout_marginTop="40dp"
-            android:onClick="editGoals"
-            android:text="@string/options_goals_button" />
-
-        <Button
-            android:id="@+id/set_notifications_button"
-            style="@style/Button"
-            android:layout_marginTop="30dp"
-            android:onClick="editNotifications"
-            android:text="@string/options_notifications_button" />
+            android:text="@string/edit_user_name" />
 
         <Button
             android:id="@+id/show_history_button"
             style="@style/Button"
-            android:layout_marginTop="30dp"
-            android:onClick="showHistory"
-            android:text="@string/options_history_button" />
+            android:layout_marginTop="130dp"
+            android:onClick="editPassword"
+            android:text="@string/edit_user_password_button" />
 
         <Button
             android:id="@+id/edit_password_button"
             style="@style/Button"
             android:layout_marginTop="30dp"
-            android:onClick="editUser"
-            android:text="@string/options_user_settings_button" />
+            android:onClick="deleteAccount"
+            android:text="@string/edit_user_delete_button" />
 
     </LinearLayout>
 

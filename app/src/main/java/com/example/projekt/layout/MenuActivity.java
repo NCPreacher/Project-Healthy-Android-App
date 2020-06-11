@@ -27,6 +27,23 @@ public class MenuActivity extends AppCompatActivity
         db.startService(MenuActivity.this, user);
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 0)
+        {
+            if(resultCode == 0)
+            {
+                Intent returnedIntent = new Intent();
+                setResult(0, returnedIntent);
+
+                finish();
+            }
+        }
+    }
+
     public void addMeal(View view)
     {
         Intent intent = new Intent(this, MealActivity.class);
@@ -45,6 +62,6 @@ public class MenuActivity extends AppCompatActivity
     {
         Intent intent = new Intent(this, OptionsActivity.class);
         intent.putExtra("user", user);
-        startActivity(intent);
+        startActivityForResult(intent, 0);
     }
 }

@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.projekt">
 
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:name=".App"
@@ -13,21 +13,55 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".layout.ChangeNotificationActivity" android:screenOrientation="portrait" />
-        <activity android:name=".layout.ChangeMealActivity" android:screenOrientation="portrait" />
-        <activity android:name=".layout.EditPasswordActivity" android:screenOrientation="portrait" />
-        <activity android:name=".layout.HistoryActivity" android:screenOrientation="portrait" />
-        <activity android:name=".layout.EditNotificationsActivity" android:screenOrientation="portrait" />
-        <activity android:name=".layout.EditGoalsActivity" android:screenOrientation="portrait" />
-        <activity android:name=".layout.RegisterActivity" android:screenOrientation="portrait" />
-        <activity android:name=".layout.MenuActivity" android:screenOrientation="portrait" />
-        <activity android:name=".layout.EditMealsActivity" android:screenOrientation="portrait" />
-        <activity android:name=".layout.NotificationsActivity" android:screenOrientation="portrait" />
-        <activity android:name=".layout.GoalActivity" android:screenOrientation="portrait" />
-        <activity android:name=".layout.OptionsActivity" android:screenOrientation="portrait" />
-        <activity android:name=".layout.StatisticsActivity" android:screenOrientation="portrait" />
-        <activity android:name=".layout.MealActivity" android:screenOrientation="portrait" />
-        <activity android:name=".layout.MainActivity" android:screenOrientation="portrait">
+
+        <activity android:name=".layout.EditUserActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".layout.ChangeNotificationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".layout.ChangeMealActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".layout.EditPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".layout.HistoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".layout.EditNotificationsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".layout.EditGoalsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".layout.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".layout.MenuActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".layout.EditMealsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".layout.NotificationsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".layout.GoalActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".layout.OptionsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".layout.StatisticsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".layout.MealActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".layout.MainActivity"
+            android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,7 +69,9 @@
             </intent-filter>
 
         </activity>
-        <service android:name=".IntentServiceNotifications"/>
+
+        <service android:name=".IntentServiceNotifications" />
+
     </application>
 
 </manifest>

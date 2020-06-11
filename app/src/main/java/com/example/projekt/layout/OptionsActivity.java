@@ -22,6 +22,23 @@ public class OptionsActivity extends AppCompatActivity
         user = intent.getStringExtra("user");
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 0)
+        {
+            if(resultCode == 0)
+            {
+                Intent returnedIntent = new Intent();
+                setResult(0, returnedIntent);
+
+                finish();
+            }
+        }
+    }
+
     public void editGoals(View view)
     {
         Intent intent = new Intent(this, GoalActivity.class);
@@ -43,10 +60,10 @@ public class OptionsActivity extends AppCompatActivity
         startActivity(intent);
     }
 
-    public void editPassword(View view)
+    public void editUser(View view)
     {
-        Intent intent = new Intent(this, EditPasswordActivity.class);
+        Intent intent = new Intent(this, EditUserActivity.class);
         intent.putExtra("user", user);
-        startActivity(intent);
+        startActivityForResult(intent, 0);
     }
 }

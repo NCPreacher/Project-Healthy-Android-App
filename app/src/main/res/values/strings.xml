@@ -47,6 +47,7 @@
     <string name="meal_info_text">Podaj wartosci odzywcze na 100g produktu/posilku</string>
     <string name="meal_add_button_text">Dodaj</string>
     <string name="meal_edit_button">Edytuj</string>
+    <string name="change_meal_button_text">Zmien</string>
 
     <string name="menu_add_meal_button">Dodaj Produkt</string>
     <string name="menu_statistics_button">Statystyki</string>
@@ -56,7 +57,7 @@
     <string name="options_goals_button">Cele</string>
     <string name="options_notifications_button">Powiadomienia</string>
     <string name="options_history_button">Historia</string>
-    <string name="options_password_button">Zmien haslo</string>
+    <string name="options_user_settings_button">Uzytkownik</string>
 
     <string name="goal_name">Cel</string>
     <string name="goal_add_button">Dodaj Cel</string>
@@ -73,6 +74,8 @@
 
     <string name="history_name">Historia</string>
 
-    <string name="change_meal_button_text">Zmien</string>
+    <string name="edit_user_name">Opcje uzytkownika</string>
+    <string name="edit_user_password_button">Zmien haslo</string>
+    <string name="edit_user_delete_button">Usun konto</string>
 
 </resources>
