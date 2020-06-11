@@ -1,0 +1,17 @@
+-Polaczenie z baza danych
+-Rejestracja
+-Logowanie
+-Statystki
+-Dodawanie produktu
+-Edytowanie produktu
+-Usuwanie produktu
+-Historia
+-Dodawanie celi
+-Edytowanie celi
+-Usuwanie celi
+-Zmiana hasla
+-Usuwanie konta
+-Dodawanie powiadomien
+-Edycja powiadomieni
+-Usuwanie powiadomien
+-Powiadomienia dzialajace w tle jako proces niezalezy
