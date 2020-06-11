@@ -73,7 +73,7 @@ public class IntentServiceNotifications extends IntentService
                     {
                         if (time.get(i).equals(getCurrentTime()) == true)
                         {
-                            createNotification(text.get(0));
+                            createNotification(text.get(i));
                             if(repeat.get(i) == 0)
                             {
                                 DataBaseHelper db = new DataBaseHelper(this);
