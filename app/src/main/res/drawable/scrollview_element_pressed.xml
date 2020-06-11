@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <gradient android:startColor="@color/scrollView_panel_pressed_0" android:endColor="@color/scrollView_panel_pressed_1" android:type="linear"></gradient>
-    <corners android:radius="20dp"></corners>
+    <gradient
+        android:startColor="@color/scrollView_panel_pressed_0"
+        android:endColor="@color/scrollView_panel_pressed_1"
+        android:type="linear">
+    </gradient>
+
+    <corners
+        android:radius="20dp">
+    </corners>
+
     <size>10</size>
 
 </shape>

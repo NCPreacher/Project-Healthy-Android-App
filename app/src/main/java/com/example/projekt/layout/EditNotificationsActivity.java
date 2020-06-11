@@ -1,4 +1,4 @@
-package com.example.projekt;
+package com.example.projekt.layout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,9 +10,10 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
-import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.example.projekt.DataBaseHelper;
+import com.example.projekt.R;
 
 public class EditNotificationsActivity extends AppCompatActivity
 {
@@ -45,6 +46,7 @@ public class EditNotificationsActivity extends AppCompatActivity
         {
             if(resultCode == RESULT_OK)
             {
+                db.startService(EditNotificationsActivity.this, user);
                 layout.removeAllViews();
                 readDatabase();
             }
@@ -112,6 +114,8 @@ public class EditNotificationsActivity extends AppCompatActivity
 
             i++;
         }
+
+        cursor.close();
     }
 
     public void edit(View view)
@@ -124,6 +128,7 @@ public class EditNotificationsActivity extends AppCompatActivity
     public void remove(View view)
     {
         db.deleteNotification(view.getTag().toString());
+        db.startService(EditNotificationsActivity.this, user);
         layout.removeAllViews();
         readDatabase();
     }

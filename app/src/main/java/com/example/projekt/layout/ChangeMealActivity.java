@@ -1,4 +1,4 @@
-package com.example.projekt;
+package com.example.projekt.layout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.projekt.DataBaseHelper;
+import com.example.projekt.R;
 
 public class ChangeMealActivity extends AppCompatActivity
 {
@@ -67,16 +70,18 @@ public class ChangeMealActivity extends AppCompatActivity
 
     public void setValues()
     {
-        Cursor temp = db.getMeal(name);
+        Cursor cursor = db.getMeal(name);
 
-        temp.moveToFirst();
+        cursor.moveToFirst();
 
         change_meal_name.setText(name);
-        change_meal_calories.setText(String.valueOf(temp.getFloat(temp.getColumnIndex("kalorie"))));
-        change_meal_proteins.setText(String.valueOf(temp.getFloat(temp.getColumnIndex("bialko"))));
-        change_meal_carbons.setText(String.valueOf(temp.getFloat(temp.getColumnIndex("weglowodany"))));
-        change_meal_fats.setText(String.valueOf(temp.getFloat(temp.getColumnIndex("tluszcze"))));
-        change_meal_fluids.setText(String.valueOf(temp.getInt(temp.getColumnIndex("plyny"))));
+        change_meal_calories.setText(String.valueOf(cursor.getFloat(cursor.getColumnIndex("kalorie"))));
+        change_meal_proteins.setText(String.valueOf(cursor.getFloat(cursor.getColumnIndex("bialko"))));
+        change_meal_carbons.setText(String.valueOf(cursor.getFloat(cursor.getColumnIndex("weglowodany"))));
+        change_meal_fats.setText(String.valueOf(cursor.getFloat(cursor.getColumnIndex("tluszcze"))));
+        change_meal_fluids.setText(String.valueOf(cursor.getInt(cursor.getColumnIndex("plyny"))));
+
+        cursor.close();
     }
 
     public void getValues()

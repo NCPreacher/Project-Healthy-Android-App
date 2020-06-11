@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item> <!-- Background -->
+        <shape>
+
+            <gradient
+                android:startColor="@color/progressbar_background_0"
+                android:endColor="@color/progressbar_background_1"
+                android:type="linear">
+            </gradient>
+
+            <corners
+                android:radius="50dp">
+            </corners>
+
+        </shape>
+    </item>
+
+    <item> <!-- Progress -->
+        <clip>
+            <shape>
+
+                <gradient
+                    android:startColor="@color/button_default_0"
+                    android:endColor="@color/button_default_1"
+                    android:type="linear">
+                </gradient>
+
+                <corners
+                    android:radius="50dp">
+                </corners>
+
+            </shape>
+        </clip>
+    </item>
+</layer-list>

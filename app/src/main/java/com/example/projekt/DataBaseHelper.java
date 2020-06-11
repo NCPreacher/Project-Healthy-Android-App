@@ -2,13 +2,18 @@ package com.example.projekt;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.example.projekt.layout.MenuActivity;
+
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -298,6 +303,17 @@ public class DataBaseHelper extends SQLiteOpenHelper
         return cursor;
     }
 
+    public Cursor getHistory(String userName, String date)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = null;
+
+        try { cursor = db.rawQuery("SELECT nazwa, ilosc FROM historia WHERE uzytkownik = ? AND data = ?", new String[] {userName, date}); }
+        catch (Exception e) { return cursor; }
+
+        return cursor;
+    }
+
     public Cursor getMeal()
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -326,6 +342,19 @@ public class DataBaseHelper extends SQLiteOpenHelper
         Cursor cursor = null;
 
         try { cursor = db.rawQuery("SELECT * FROM cele WHERE uzytkownik = ?", new String[] {userName}); }
+        catch (Exception e) { return cursor; }
+
+        return cursor;
+    }
+
+    public Cursor getGoal(String userName, int day)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = null;
+
+        try { cursor = db.rawQuery("SELECT * FROM cele WHERE uzytkownik = ? AND dzien = ?",
+                                       new String[] {userName, Integer.toString(day)}); }
+
         catch (Exception e) { return cursor; }
 
         return cursor;
@@ -388,7 +417,7 @@ public class DataBaseHelper extends SQLiteOpenHelper
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    private String getDateTime()
+    public String getDateTime()
     {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         Date date = new Date();
@@ -420,5 +449,61 @@ public class DataBaseHelper extends SQLiteOpenHelper
         else if(day == 6) return "Niedziela";
 
         return "Error";
+    }
+
+    public int getDayNumber()
+    {
+        Calendar rightNow = Calendar.getInstance();
+        int day = rightNow.get(Calendar.DAY_OF_WEEK); // <1, 7>
+
+        if(day == 1) { return 6; }
+        else { return day - 2; }
+    }
+
+    public void startService(Context context, String user)
+    {
+        Intent serviceIntent = new Intent(context, IntentServiceNotifications.class);
+
+        ArrayList<Integer> notification_id = new ArrayList<>();
+        ArrayList<String> notification_day = new ArrayList<>();
+        ArrayList<String> notification_time = new ArrayList<>();
+        ArrayList<String> notification_text = new ArrayList<>();
+        ArrayList<Integer> notification_active = new ArrayList<>();
+        ArrayList<Integer> notification_repeat = new ArrayList<>();
+
+        Cursor cursor = getNotification(user);
+
+        if(cursor.moveToFirst() == true)
+        {
+            do
+            {
+                int id = cursor.getInt(cursor.getColumnIndex("p_id"));
+                String day = cursor.getString(cursor.getColumnIndex("dzien"));
+                String time = cursor.getString(cursor.getColumnIndex("godzina"));
+                String text = cursor.getString(cursor.getColumnIndex("tresc"));
+                int active = cursor.getInt(cursor.getColumnIndex("wlaczone"));
+                int repeat = cursor.getInt(cursor.getColumnIndex("powtarzaj"));
+
+                notification_id.add(id);
+                notification_day.add(day);
+                notification_time.add(time);
+                notification_text.add(text);
+                notification_active.add(active);
+                notification_repeat.add(repeat);
+
+            } while (cursor.moveToNext() == true);
+
+            serviceIntent.putIntegerArrayListExtra("id", notification_id);
+            serviceIntent.putStringArrayListExtra("day", notification_day);
+            serviceIntent.putStringArrayListExtra("time", notification_time);
+            serviceIntent.putStringArrayListExtra("text", notification_text);
+            serviceIntent.putIntegerArrayListExtra("active", notification_active);
+            serviceIntent.putIntegerArrayListExtra("repeat", notification_repeat);
+
+            context.stopService(serviceIntent);
+            context.startService(serviceIntent);
+
+            //ContextCompat.startForegroundService(MenuActivity.this, serviceIntent);
+        }
     }
 }

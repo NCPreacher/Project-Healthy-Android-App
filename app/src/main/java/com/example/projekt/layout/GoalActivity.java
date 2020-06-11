@@ -1,4 +1,4 @@
-package com.example.projekt;
+package com.example.projekt.layout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+
+import com.example.projekt.DataBaseHelper;
+import com.example.projekt.R;
 
 public class GoalActivity extends AppCompatActivity
 {
@@ -111,6 +114,8 @@ public class GoalActivity extends AppCompatActivity
         goal_carbons.setText(String.valueOf(cursor.getFloat(cursor.getColumnIndex("weglowodany"))));
         goal_fats.setText(String.valueOf(cursor.getFloat(cursor.getColumnIndex("tluszcze"))));
         goal_fluids.setText(String.valueOf(cursor.getInt(cursor.getColumnIndex("nawodnienie"))));
+
+        cursor.close();
     }
 
     private void initSpinner()

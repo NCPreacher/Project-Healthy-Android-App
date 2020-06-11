@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/menu_background"
-    tools:context=".MealActivity">
+    tools:context=".layout.MealActivity">
 
     <LinearLayout
         style="@style/Linear_layout"
@@ -18,12 +18,15 @@
             android:layout_marginTop="50dp"
             android:text="@string/meal_name_text"/>
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/meal_name"
             style="@style/Input_Text"
-            android:layout_width="250dp"
+            android:minWidth="250dp"
+            android:layout_width="wrap_content"
             android:hint="@string/meal_name_hint_text"
-            android:autofillHints="" />
+            android:completionThreshold="1"
+            android:popupTheme="@style/ScrollView_Panel"
+            android:dropDownWidth="wrap_content"/>
 
         <TextView
             android:id="@+id/add_meal_info"

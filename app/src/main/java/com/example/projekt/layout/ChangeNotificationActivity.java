@@ -1,4 +1,4 @@
-package com.example.projekt;
+package com.example.projekt.layout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.example.projekt.DataBaseHelper;
+import com.example.projekt.R;
 
 public class ChangeNotificationActivity extends AppCompatActivity
 {
@@ -65,6 +68,8 @@ public class ChangeNotificationActivity extends AppCompatActivity
         change_notification_time.setText(cursor.getString(cursor.getColumnIndex("godzina")));
         change_notification_text.setText(cursor.getString(cursor.getColumnIndex("tresc")));
         change_notification_repeat.setChecked(cursor.getInt(cursor.getColumnIndex("powtarzaj")) > 0);
+
+        cursor.close();
     }
 
     public boolean getValues()

@@ -1,10 +1,12 @@
-package com.example.projekt;
+package com.example.projekt.layout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.projekt.R;
 
 public class OptionsActivity extends AppCompatActivity
 {

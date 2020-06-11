@@ -1,4 +1,4 @@
-package com.example.projekt;
+package com.example.projekt.layout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.projekt.DataBaseHelper;
+import com.example.projekt.R;
 
 public class RegisterActivity extends AppCompatActivity
 {

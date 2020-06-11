@@ -5,6 +5,12 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
 
+    <color name="text">#FFFFFF</color>
+    <color name="warning_text">#FF0000</color>
+
+    <color name="progressbar_background_0">#0DA561</color>
+    <color name="progressbar_background_1">#006BB3</color>
+
     <color name="button_default_0">#2AF598</color>
     <color name="button_default_1">#009EFD</color>
     <color name="button_pressed_0">#12E184</color>

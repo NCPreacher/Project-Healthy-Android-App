@@ -1,31 +1,41 @@
-package com.example.projekt;
+package com.example.projekt.layout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
-import android.widget.Button;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.projekt.DataBaseHelper;
+import com.example.projekt.R;
+
+import java.util.ArrayList;
 
 public class MealActivity extends AppCompatActivity
 {
     String user;
-    Boolean is_called_from_edit = false;
 
     String name;
-    float amount;
-    float calories;
-    float proteins;
-    float carbons;
-    float fats;
-    int fluids;
+    float amount = 0;
+    float calories = 0;
+    float proteins = 0;
+    float carbons = 0;
+    float fats = 0;
+    int fluids = 0;
+
+    AutoCompleteTextView meal_name;
+    ArrayList<String> meals = new ArrayList<>();
 
     TextView meal_warning;
     EditText meal_amount;
-    EditText meal_name;
     EditText meal_calories;
     EditText meal_proteins;
     EditText meal_carbons;
@@ -46,6 +56,7 @@ public class MealActivity extends AppCompatActivity
         db = new DataBaseHelper(MealActivity.this);
 
         getUI();
+        getMeals();
     }
 
     @Override
@@ -67,18 +78,14 @@ public class MealActivity extends AppCompatActivity
         if(!meal_name.getText().toString().equals(""))
         {
             name = meal_name.getText().toString();
-            db.addMeal(name, calories, proteins, carbons, fats, fluids);
+            try { db.addMeal(name, calories, proteins, carbons, fats, fluids); }
+            catch (Exception e) {}
 
-            if(!meal_amount.getText().toString().equals(""))
+            if(!meal_amount.getText().toString().equals("") &&
+               Float.valueOf(meal_amount.getText().toString()) != 0.0)
             {
                 amount = Float.parseFloat(meal_amount.getText().toString());
                 db.addHistory(user, name, amount);
-            }
-
-            if(is_called_from_edit == true)
-            {
-                Intent returnedIntent = new Intent();
-                setResult(RESULT_OK, returnedIntent);
             }
 
             finish();
@@ -103,20 +110,40 @@ public class MealActivity extends AppCompatActivity
         meal_carbons = findViewById(R.id.meal_carbons);
         meal_fats = findViewById(R.id.meal_fats);
         meal_fluids = findViewById(R.id.meal_fluids);
+
+        meal_name.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                String selected_meal[] = meal_name.getText().toString().split("  ");
+                meal_name.setText(selected_meal[1].trim());
+                setValues(selected_meal[1].trim());
+            }
+        });
+    }
+
+    public void setValues(String name)
+    {
+        Cursor cursor = db.getMeal(name);
+
+        cursor.moveToFirst();
+
+        meal_name.setText(name);
+        meal_calories.setText(Float.toString(cursor.getFloat(cursor.getColumnIndex("kalorie"))));
+        meal_proteins.setText(Float.toString(cursor.getFloat(cursor.getColumnIndex("bialko"))));
+        meal_carbons.setText(Float.toString(cursor.getFloat(cursor.getColumnIndex("weglowodany"))));
+        meal_fats.setText(Float.toString(cursor.getFloat(cursor.getColumnIndex("tluszcze"))));
+        meal_fluids.setText(Integer.toString(cursor.getInt(cursor.getColumnIndex("plyny"))));
     }
 
     public void getValues()
     {
         if(!meal_calories.getText().toString().equals("")) { calories = Float.parseFloat(meal_calories.getText().toString()); }
-        else { calories = 0; }
         if(!meal_proteins.getText().toString().equals("")) { proteins = Float.parseFloat(meal_proteins.getText().toString()); }
-        else { proteins = 0; }
         if(!meal_carbons.getText().toString().equals("")) { carbons = Float.parseFloat(meal_carbons.getText().toString()); }
-        else { carbons = 0; }
         if(!meal_fats.getText().toString().equals("")) { fats = Float.parseFloat(meal_fats.getText().toString()); }
-        else { fats = 0; }
         if(!meal_fluids.getText().toString().equals("")) { fluids = Integer.parseInt(meal_fluids.getText().toString()); }
-        else { fluids = 0; }
     }
 
     public void resetActivity()
@@ -130,5 +157,26 @@ public class MealActivity extends AppCompatActivity
         meal_carbons.setText("");
         meal_fats.setText("");
         meal_fluids.setText("");
+    }
+
+    public void getMeals()
+    {
+        Cursor cursor = db.getMeal();
+
+        while(cursor.moveToNext())
+        {
+            meals.add(
+                    "  " +
+                    cursor.getString(cursor.getColumnIndex("nazwa")) + "\n  K:" +
+                    cursor.getFloat(cursor.getColumnIndex("kalorie")) + "  B:" +
+                    cursor.getFloat(cursor.getColumnIndex("bialko")) + "  W:" +
+                    cursor.getFloat(cursor.getColumnIndex("weglowodany")) + "  T:" +
+                    cursor.getFloat(cursor.getColumnIndex("tluszcze")) + "  N:" +
+                    cursor.getInt(cursor.getColumnIndex("plyny"))
+            );
+        }
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(MealActivity.this, R.layout.search, meals);
+        meal_name.setAdapter(arrayAdapter);
     }
 }

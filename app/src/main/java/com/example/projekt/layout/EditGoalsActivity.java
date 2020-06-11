@@ -1,4 +1,4 @@
-package com.example.projekt;
+package com.example.projekt.layout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.projekt.DataBaseHelper;
+import com.example.projekt.R;
 
 public class EditGoalsActivity extends AppCompatActivity
 {
@@ -82,6 +85,8 @@ public class EditGoalsActivity extends AppCompatActivity
 
             i++;
         }
+
+        cursor.close();
     }
 
     public void edit(View view)

@@ -1,7 +1,8 @@
-package com.example.projekt;
+package com.example.projekt.layout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Notification;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.example.projekt.DataBaseHelper;
+import com.example.projekt.R;
 
 public class NotificationsActivity extends AppCompatActivity
 {
@@ -49,6 +53,7 @@ public class NotificationsActivity extends AppCompatActivity
         if(getValues() == true)
         {
             db.addNotification(user, repetition, day, time, text);
+            db.startService(NotificationsActivity.this, user);
             editNotification(view);
             finish();
         }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditMealsActivity">
+    tools:context=".layout.EditMealsActivity">
 
     <LinearLayout
         android:id="@+id/edit_meal_main_layout"
@@ -15,26 +15,25 @@
         <Button
             android:id="@+id/edit_meal_remove"
             style="@style/ScrollView_Button"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="240dp"
             android:onClick="remove"
             android:text="@string/remove_button" />
 
-        <EditText
-            android:id="@+id/edit_meal_search"
-            style="@style/ScrollView_Input_Text"
-            android:layout_width="200dp"
-            android:hint="@string/search" />
+
 
         <Button
             android:id="@+id/edit_meals_add"
             style="@style/ScrollView_Button"
+            android:layout_marginTop="15dp"
             android:onClick="add"
             android:text="@string/add_button" />
 
     </LinearLayout>
 
     <ScrollView
-        app:layout_constraintTop_toBottomOf="@+id/edit_meal_main_layout"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_meal_main_layout"
         style="@style/ScrollView">
 
         <LinearLayout
