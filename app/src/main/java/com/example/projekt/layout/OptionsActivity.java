@@ -23,16 +23,25 @@ public class OptionsActivity extends AppCompatActivity
     }
 
     @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+
+        Intent returnedIntent = new Intent();
+        setResult(1, returnedIntent);
+    }
+
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == 0)
         {
-            if(resultCode == 0)
+            if(resultCode == RESULT_OK)
             {
                 Intent returnedIntent = new Intent();
-                setResult(0, returnedIntent);
+                setResult(RESULT_OK, returnedIntent);
 
                 finish();
             }

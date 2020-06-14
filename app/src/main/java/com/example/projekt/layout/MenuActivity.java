@@ -34,13 +34,7 @@ public class MenuActivity extends AppCompatActivity
 
         if(requestCode == 0)
         {
-            if(resultCode == 0)
-            {
-                Intent returnedIntent = new Intent();
-                setResult(0, returnedIntent);
-
-                finish();
-            }
+            if(resultCode == RESULT_OK) { finish(); }
         }
     }
 

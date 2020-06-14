@@ -290,6 +290,8 @@ public class DataBaseHelper extends SQLiteOpenHelper
         return db.update("cele", cv, "c_id = ?", new String[] {String.valueOf(id)}) > 0;
     }
 
+
+
     /// Get //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public Cursor getHistory(String userName)

@@ -26,12 +26,21 @@ public class EditUserActivity extends AppCompatActivity
         db = new DataBaseHelper(EditUserActivity.this);
     }
 
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+
+        Intent returnedIntent = new Intent();
+        setResult(1, returnedIntent);
+    }
+
     public void deleteAccount(View view)
     {
         db.deleteUser(user);
 
         Intent returnedIntent = new Intent();
-        setResult(0, returnedIntent);
+        setResult(RESULT_OK, returnedIntent);
 
         finish();
     }

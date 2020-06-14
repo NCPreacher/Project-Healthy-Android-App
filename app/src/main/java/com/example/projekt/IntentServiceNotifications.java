@@ -27,7 +27,6 @@ public class IntentServiceNotifications extends IntentService
     private ArrayList<Integer> active = new ArrayList<>();
     private ArrayList<Integer> repeat = new ArrayList<>();
 
-    public boolean isRunning = false;
     private PowerManager.WakeLock wakeLock;
 
     @Override
@@ -46,7 +45,6 @@ public class IntentServiceNotifications extends IntentService
     public void onDestroy()
     {
         super.onDestroy();
-        isRunning = false;
         wakeLock.release();
     }
 
@@ -59,8 +57,6 @@ public class IntentServiceNotifications extends IntentService
     @Override
     protected void onHandleIntent(@Nullable Intent intent)
     {
-        if(isRunning == false) { isRunning = true; }
-
         getValues(intent);
 
         while(day.size() > 0)
